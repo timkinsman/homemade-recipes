@@ -22,9 +22,9 @@ export type VariantSelection<
   [VariantGroup in keyof Variants]?:
     | BooleanMap<keyof Variants[VariantGroup]>
     | undefined
-    | ({ initial: keyof Variants[VariantGroup] } & {
+    | ({ initial: keyof Variants[VariantGroup] } & Partial<{
         [C in Conditions[number]]: keyof Variants[VariantGroup];
-      });
+      }>);
 };
 
 export type VariantsClassNames<Variants extends VariantGroups> = {
