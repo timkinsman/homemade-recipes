@@ -13,8 +13,9 @@
     "types": [],
     "jsx": "react",
     "noEmit": false,
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
 
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
