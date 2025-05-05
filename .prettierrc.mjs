@@ -1,10 +1,10 @@
-import nayhooPrettierConfig from "@nayhoo/prettier-config";
-
-/**
- * @type {import("prettier").Config}
- */
 const config = {
-  ...nayhooPrettierConfig,
+  bracketSpacing: true,
+  semi: true,
+  trailingComma: "all",
+  printWidth: 80,
+  tabWidth: 2,
+  plugins: ["prettier-plugin-organize-imports"],
 };
 
 export default config;

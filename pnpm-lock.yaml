@@ -32,9 +32,6 @@ importers:
       '@nayhoo/eslint-config':
         specifier: ^1.0.2
         version: 1.0.2(eslint@8.57.1)(prettier@3.5.3)(typescript@5.3.3)
-      '@nayhoo/prettier-config':
-        specifier: ^1.0.1
-        version: 1.0.1(prettier@3.5.3)(typescript@5.3.3)
       '@testing-library/jest-dom':
         specifier: ^6.4.2
         version: 6.6.3
@@ -62,6 +59,9 @@ importers:
       prettier:
         specifier: ^3.4.2
         version: 3.5.3
+      prettier-plugin-organize-imports:
+        specifier: ^4.1.0
+        version: 4.1.0(prettier@3.5.3)(typescript@5.3.3)
       rimraf:
         specifier: ~5.0.0
         version: 5.0.10
@@ -1367,11 +1367,6 @@ packages:
     peerDependencies:
       eslint: ^8.0.0
       prettier: ^3.0.0
-
-  '@nayhoo/prettier-config@1.0.1':
-    resolution: {integrity: sha512-AqqCAUOXsXD/kBWiBOW9S4QWEgovA3CF/YZSR4ctpDXKxOlS78KYZ5fsRd+WHv5qeWXcrcdsX/g5cF59uww7iQ==, tarball: https://registry.npmjs.org/@nayhoo/prettier-config/-/prettier-config-1.0.1.tgz}
-    peerDependencies:
-      prettier: '>=3.0.0'
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5525,14 +5520,6 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-
-  '@nayhoo/prettier-config@1.0.1(prettier@3.5.3)(typescript@5.3.3)':
-    dependencies:
-      prettier: 3.5.3
-      prettier-plugin-organize-imports: 4.1.0(prettier@3.5.3)(typescript@5.3.3)
-    transitivePeerDependencies:
-      - typescript
-      - vue-tsc
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
