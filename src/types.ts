@@ -22,8 +22,8 @@ export type VariantSelection<
   [VariantGroup in keyof Variants]?:
     | BooleanMap<keyof Variants[VariantGroup]>
     | undefined
-    | ({ initial: keyof Variants[VariantGroup] } & Partial<{
-        [C in Conditions[number]]: keyof Variants[VariantGroup];
+    | ({ initial: BooleanMap<keyof Variants[VariantGroup]> } & Partial<{
+        [C in Conditions[number]]: BooleanMap<keyof Variants[VariantGroup]>;
       }>);
 };
 
