@@ -44,23 +44,23 @@ export const createRuntimeFn = <
         selections[variantName] ?? config.defaultVariants[variantName];
 
       if (variantSelection != null) {
-        const selection = variantSelection;
+        let selection = variantSelection;
 
         if (typeof selection === "object") {
           // Conditional style
 
           for (const conditionName in selection) {
-            const value = selection[conditionName];
+            let value = selection[conditionName];
 
             if (value != null) {
-              const selectionClassName =
-                config.responsiveVariants[conditionName][variantName][
-                  String(value)
-                ];
-
-              if (!selectionClassName) {
-                throw new Error();
+              if (typeof value === "boolean") {
+                // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L42
+                value = value === true ? "true" : "false";
               }
+
+              const selectionClassName =
+                // @ts-expect-error TODO
+                config.responsiveVariants[conditionName][variantName][value];
 
               if (selectionClassName) {
                 className += " " + selectionClassName;
@@ -68,12 +68,14 @@ export const createRuntimeFn = <
             }
           }
         } else {
-          const selectionClassName =
-            config.variantClassNames[variantName][String(selection)];
-
-          if (!selectionClassName) {
-            throw new Error();
+          if (typeof selection === "boolean") {
+            // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L42
+            selection = selection === true ? "true" : "false";
           }
+
+          const selectionClassName =
+            // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L47
+            config.variantClassNames[variantName][selection];
 
           if (selectionClassName) {
             className += " " + selectionClassName;
