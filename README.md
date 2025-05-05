@@ -103,7 +103,7 @@ Contributions are welcome! Here's how you can help:
 
 - [Vanilla Extract](https://vanilla-extract.style/) - For creating an awesome library
 - [Tailwind Variants](https://www.tailwind-variants.org) - For the inspiration behind `responsiveVariants` functionality ([discontinued](https://www.tailwind-variants.org/docs/tailwind-v4#breaking-changes))
-- [Rainbow Sprinkles](https://github.com/wayfair/rainbow-sprinkles) & [Dessert Box](https://github.com/themmayo/dessert-box) - For inspiration on extending vanilla-extract
+- [Rainbow Sprinkles](https://github.com/wayfair/rainbow-sprinkles) & [Dessert Box](https://github.com/TheMightyPenguin/dessert-box) - For inspiration on extending vanilla-extract
 
 ## License
 
