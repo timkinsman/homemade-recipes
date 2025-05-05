@@ -1,13 +1,12 @@
 # Homemade Recipes
 
-[![Tests](https://github.com/timkinsman/homemade-recipes/actions/workflows/tests.yml/badge.svg)](https://github.com/timkinsman/homemade-recipes/actions)
-[![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
-[![License](https://img.shields.io/github/license/yourusername/homemade-recipes.svg)](https://github.com/timkinsman/homemade-recipes/blob/main/LICENSE)
-
 An extension of `@vanilla-extract/recipes` that adds responsive variant utilities.
 
-Built for projects that need responsive styling while keeping vanilla-extract's type safety and zero-runtime approach.
-A
+[![Tests](https://github.com/timkinsman/homemade-recipes/actions/workflows/tests.yml/badge.svg)](https://github.com/timkinsman/homemade-recipes/actions)
+[![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
+[![license: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+Homemade Recipes is built for projects that need responsive styling while keeping vanilla-extract's type safety and zero-runtime approach.
 
 ## Installation
 
@@ -66,8 +65,6 @@ export type ButtonVariants = NonNullable<
 >;
 ```
 
-### Usage
-
 ```tsx
 // button.tsx
 import { ButtonVariants, buttonRecipe } from "./button-recipe.css";
@@ -78,6 +75,8 @@ export const Button = ({ fullWidth }: ButtonProps) => {
   return <button className={buttonRecipe({ fullWidth })}>Hello world</button>;
 };
 ```
+
+### Usage
 
 ```tsx
 // App.tsx
