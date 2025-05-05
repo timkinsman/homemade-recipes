@@ -18,6 +18,17 @@ export type {
 
 type ConditionalOptions<Conditions extends BaseConditions> = Conditions;
 
+/**
+ * @param conditions Key/value pairs where the keys become your responsive modifiers, and the values are the min-width where that breakpoint should start.
+ * @example
+ * const homemadeRecipe = createHomemadeRecipe({
+ *  xs: '520px', // Phones (landscape)
+ *  sm: '768px', // Tablets (portrait)
+ *  md: '1024px', // Tablets (landscape)
+ *  lg: '1280px', // Laptops
+ *  xl: '1640px', // Desktops
+ * })
+ */
 export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   conditions: ConditionalOptions<Conditions>,
 ) => {
@@ -33,7 +44,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       defaultVariants = {},
       compoundVariants = [],
       base,
-      conditionVariants: conditionNames = [],
+      responsiveVariants: conditionNames = [],
     } = options;
 
     let defaultClassName;
@@ -78,17 +89,17 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       ]);
     }
 
-    const conditionVariants: PatternResult<
+    const responsiveVariants: PatternResult<
       Variants,
       ConditionNames
-    >["conditionVariants"] = Object.assign(
+    >["responsiveVariants"] = Object.assign(
       { initial: variantClassNames },
       ...conditionNames.map((conditionName) => {
         if (conditionName === "initial") {
           throw new Error("'initial' is not allowed as a condition variant");
         }
 
-        const condition = conditions[conditionName];
+        const breakpoint = conditions[conditionName];
 
         const variantGroupMap: Record<
           string | number,
@@ -104,7 +115,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
 
               styleValue = {
                 "@media": {
-                  [condition]: variant,
+                  [`screen and (min-width: ${breakpoint})`]: variant,
                 },
               };
 
@@ -131,7 +142,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       variantClassNames,
       defaultVariants,
       compoundVariants: compounds,
-      conditionVariants,
+      responsiveVariants,
       conditionNames: conditionNames as ConditionNames,
     };
 

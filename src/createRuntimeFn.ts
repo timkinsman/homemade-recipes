@@ -54,7 +54,7 @@ export const createRuntimeFn = <
 
             if (value != null) {
               const selectionClassName =
-                config.conditionVariants[conditionName][variantName][
+                config.responsiveVariants[conditionName][variantName][
                   String(value)
                 ];
 
@@ -106,8 +106,8 @@ export const createRuntimeFn = <
       ) as RecipeClassNames<Variants, Conditions>["variants"];
     },
 
-    get conditionVariants() {
-      return config.conditionVariants;
+    get responsiveVariants() {
+      return config.responsiveVariants;
     },
   };
 

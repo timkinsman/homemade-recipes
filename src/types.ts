@@ -33,7 +33,7 @@ export type VariantsClassNames<Variants extends VariantGroups> = {
   };
 };
 
-export type ConditionVariants<
+export type ResponsiveVariants<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
 > = { initial: VariantsClassNames<Variants> } & {
@@ -48,7 +48,7 @@ export type PatternResult<
   variantClassNames: VariantsClassNames<Variants>;
   defaultVariants: VariantSelection<Variants, Conditions>;
   compoundVariants: Array<[VariantSelection<Variants, Conditions>, string]>;
-  conditionVariants: ConditionVariants<Variants, Conditions>;
+  responsiveVariants: ResponsiveVariants<Variants, Conditions>;
   conditionNames: Conditions;
 };
 
@@ -70,7 +70,7 @@ export type PatternOptions<
   variants?: Variants;
   defaultVariants?: VariantSelection<Variants, Conditions>;
   compoundVariants?: Array<CompoundVariant<Variants, Conditions>>;
-  conditionVariants?: Conditions;
+  responsiveVariants?: Conditions;
 };
 
 export type RecipeClassNames<
@@ -79,7 +79,7 @@ export type RecipeClassNames<
 > = {
   base: string;
   variants: VariantsClassNames<Variants>;
-  conditionVariants: ConditionVariants<Variants, Conditions>;
+  responsiveVariants: ResponsiveVariants<Variants, Conditions>;
 };
 
 export type RuntimeFn<
