@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "",
+  "description": "An extension of @vanilla-extract/recipes that adds responsive variant utilities.",
   "main": "dist/index",
   "types": "dist/index",
   "files": [
