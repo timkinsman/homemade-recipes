@@ -70,7 +70,6 @@ export type ButtonVariants = NonNullable<
 
 ```tsx
 // button.tsx
-
 import { ButtonVariants, buttonRecipe } from "./button-recipe.css";
 
 type ButtonProps = ButtonVariants;

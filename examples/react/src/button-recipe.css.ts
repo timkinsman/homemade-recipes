@@ -1,5 +1,5 @@
 import { HomemadeRecipeVariants } from "homemade-recipes";
-import { homemadeRecipe } from "./homemade-recipes.css";
+import { homemadeRecipe } from "./homemade-recipe.css";
 
 export const buttonRecipe = homemadeRecipe({
   base: {
