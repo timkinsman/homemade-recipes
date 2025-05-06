@@ -1,5 +1,11 @@
 # homemade-recipes
 
+## 0.1.2
+
+### Patch Changes
+
+- 07aa9a9: fix: support responsive compounds
+
 ## 0.1.1
 
 ### Patch Changes
