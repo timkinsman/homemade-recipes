@@ -1,6 +1,6 @@
 # Homemade Recipes
 
-An extension of `@vanilla-extract/recipes` that adds responsive variant utilities.
+An extension of `@vanilla-extract/recipes` that adds responsive variants.
 
 [![Tests](https://github.com/timkinsman/homemade-recipes/actions/workflows/tests.yml/badge.svg)](https://github.com/timkinsman/homemade-recipes/actions)
 [![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
@@ -17,6 +17,8 @@ npm install homemade-recipes
 ## Configuration
 
 ### Setup
+
+`createHomemadeRecipe` accepts key/value pairs where the keys become your responsive modifiers, and the values are the min-width where that breakpoint should start.
 
 ```ts
 // homemade-recipe.css.ts
@@ -36,11 +38,15 @@ export const homemadeRecipe = createHomemadeRecipe({
 });
 ```
 
+`homemadeRecipe` extends [recipe](https://vanilla-extract.style/documentation/packages/recipes/#recipe) that accepts an optional `responsiveVariants`.
+
 ```ts
 // button-recipe.css.ts
 import { HomemadeRecipeVariants } from "homemade-recipes";
 import { homemadeRecipe } from "./homemade-recipe.css";
 
+// To learn more about base styles, variants, compoundVariants and defaultVariants
+// https://vanilla-extract.style/documentation/packages/recipes/
 export const buttonRecipe = homemadeRecipe({
   base: {
     borderRadius: 6,
@@ -65,6 +71,8 @@ export type ButtonVariants = NonNullable<
 >;
 ```
 
+With this recipe configured, you can now use it for your button component.
+
 ```tsx
 // button.tsx
 import { ButtonVariants, buttonRecipe } from "./button-recipe.css";
@@ -88,6 +96,27 @@ function App() {
 }
 
 export default App;
+```
+
+The following CSS classes will be applied to your `Button` component.
+
+```css
+/* base styles */
+.button-recipe__4lwr860 {
+  border-radius: 6px;
+}
+
+/* fullWidth initial true styles */
+.button-recipe_fullWidth_true__4lwr861 {
+  width: 100%;
+}
+
+/* fullWidth sm false styles */
+@media screen and (min-width: 768px) {
+  .button-recipe_fullWidth_false_sm__4lwr864 {
+    width: initial;
+  }
+}
 ```
 
 ## Contributing
