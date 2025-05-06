@@ -1,10 +1,12 @@
 {
   "name": "homemade-recipes",
   "version": "0.1.2",
+  "author": "Tim Kinsman <tkinsm@gmail.com>",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "description": "An extension of @vanilla-extract/recipes that adds responsive variant utilities.",
+  "description": "An extension of @vanilla-extract/recipes that adds responsive variants.",
   "main": "dist/index",
   "types": "dist/index",
   "files": [
