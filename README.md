@@ -45,8 +45,6 @@ export const homemadeRecipe = createHomemadeRecipe({
 import { HomemadeRecipeVariants } from "homemade-recipes";
 import { homemadeRecipe } from "./homemade-recipe.css";
 
-// To learn more about base styles, variants, compoundVariants and defaultVariants
-// https://vanilla-extract.style/documentation/packages/recipes/
 export const buttonRecipe = homemadeRecipe({
   base: {
     borderRadius: 6,
@@ -71,7 +69,7 @@ export type ButtonVariants = NonNullable<
 >;
 ```
 
-With this recipe configured, you can now use it for your button component.
+With this homemade recipe, you can now use it for your button component.
 
 ```tsx
 // button.tsx
