@@ -6,7 +6,7 @@ An extension of `@vanilla-extract/recipes` that adds responsive variants.
 [![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
 [![license: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Homemade Recipes is built for projects that need responsive styling while keeping vanilla-extract's type safety and zero-runtime approach.
+Homemade Recipes is built for projects that need responsive styling while keeping Vanilla Extract's type safety and zero-runtime approach.
 
 ## Installation
 
