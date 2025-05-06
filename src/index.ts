@@ -7,7 +7,6 @@ import type {
   PatternResult,
   RuntimeFn,
   VariantGroups,
-  VariantSelection,
 } from "./types";
 import { mapValues } from "./utils";
 
@@ -71,9 +70,10 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
         ),
     );
 
-    const compounds: Array<
-      [VariantSelection<Variants, ConditionNames>, string]
-    > = [];
+    const compounds: PatternResult<
+      Variants,
+      ConditionNames
+    >["compoundVariants"] = [];
 
     for (const { style: theStyle, variants } of compoundVariants) {
       compounds.push([
@@ -86,8 +86,26 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
                 ? `${debugId}_compound_${compounds.length}`
                 : `compound_${compounds.length}`,
             ),
+        "initial",
       ]);
     }
+
+    conditionNames.forEach((conditionName) => {
+      for (const { style: theStyle, variants } of compoundVariants) {
+        compounds.push([
+          variants,
+          typeof theStyle === "string"
+            ? theStyle
+            : style(
+                theStyle,
+                debugId
+                  ? `${debugId}_compound_${compounds.length}_${String(conditionName)}`
+                  : `compound_${compounds.length}__${String(conditionName)}`,
+              ),
+          conditionName,
+        ]);
+      }
+    });
 
     const responsiveVariants: PatternResult<
       Variants,

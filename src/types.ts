@@ -47,7 +47,13 @@ export type PatternResult<
   defaultClassName: string;
   variantClassNames: VariantsClassNames<Variants>;
   defaultVariants: VariantSelection<Variants, Conditions>;
-  compoundVariants: Array<[VariantSelection<Variants, Conditions>, string]>;
+  compoundVariants: Array<
+    [
+      VariantSelection<Variants, Conditions>,
+      string,
+      "initial" | Conditions[number],
+    ]
+  >;
   responsiveVariants: ResponsiveVariants<Variants, Conditions>;
   conditionNames: Conditions;
 };

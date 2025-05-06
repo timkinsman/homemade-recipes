@@ -15,10 +15,23 @@ const shouldApplyCompound = <
   compoundCheck: VariantSelection<Variants, Conditions>,
   selections: VariantSelection<Variants, Conditions>,
   defaultVariants: VariantSelection<Variants, Conditions>,
+  conditionName: "initial" | Conditions[number],
 ) => {
   for (const key of Object.keys(compoundCheck)) {
-    if (compoundCheck[key] !== (selections[key] ?? defaultVariants[key])) {
-      return false;
+    const value = selections[key] ?? defaultVariants[key];
+
+    if (typeof value === "object") {
+      // Conditional style
+
+      if (compoundCheck[key] !== value[conditionName]) {
+        return false;
+      }
+    } else {
+      // Unconditional style
+
+      if (conditionName !== "initial" || compoundCheck[key] !== value) {
+        return false;
+      }
     }
   }
 
@@ -84,9 +97,18 @@ export const createRuntimeFn = <
       }
     }
 
-    for (const [compoundCheck, compoundClassName] of config.compoundVariants) {
+    for (const [
+      compoundCheck,
+      compoundClassName,
+      conditionName,
+    ] of config.compoundVariants) {
       if (
-        shouldApplyCompound(compoundCheck, selections, config.defaultVariants)
+        shouldApplyCompound(
+          compoundCheck,
+          selections,
+          config.defaultVariants,
+          conditionName,
+        )
       ) {
         className += " " + compoundClassName;
       }
