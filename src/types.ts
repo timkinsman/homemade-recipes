@@ -22,9 +22,10 @@ export type VariantSelection<
   [VariantGroup in keyof Variants]?:
     | BooleanMap<keyof Variants[VariantGroup]>
     | undefined
-    | ({ initial: BooleanMap<keyof Variants[VariantGroup]> } & Partial<{
-        [C in Conditions[number]]: BooleanMap<keyof Variants[VariantGroup]>;
-      }>);
+    | (Partial<{ initial: BooleanMap<keyof Variants[VariantGroup]> }> &
+        Partial<{
+          [C in Conditions[number]]: BooleanMap<keyof Variants[VariantGroup]>;
+        }>);
 };
 
 export type VariantsClassNames<Variants extends VariantGroups> = {
@@ -47,13 +48,7 @@ export type PatternResult<
   defaultClassName: string;
   variantClassNames: VariantsClassNames<Variants>;
   defaultVariants: VariantSelection<Variants, Conditions>;
-  compoundVariants: Array<
-    [
-      VariantSelection<Variants, Conditions>,
-      string,
-      "initial" | Conditions[number],
-    ]
-  >;
+  compoundVariants: Array<[VariantSelection<Variants, Conditions>, string]>;
   responsiveVariants: ResponsiveVariants<Variants, Conditions>;
   conditionNames: Conditions;
 };

@@ -6,7 +6,14 @@ import type {
   VariantGroups,
   VariantSelection,
 } from "./types";
-import { mapValues } from "./utils";
+import {
+  isEmptyObject,
+  isNullish,
+  isObject,
+  mapValues,
+  normalizeVariantSelection,
+  shallowEqual,
+} from "./utils";
 
 const shouldApplyCompound = <
   Variants extends VariantGroups,
@@ -15,21 +22,25 @@ const shouldApplyCompound = <
   compoundCheck: VariantSelection<Variants, Conditions>,
   selections: VariantSelection<Variants, Conditions>,
   defaultVariants: VariantSelection<Variants, Conditions>,
-  conditionName: "initial" | Conditions[number],
 ) => {
   for (const key of Object.keys(compoundCheck)) {
-    const value = selections[key] ?? defaultVariants[key];
+    const compound = normalizeVariantSelection(compoundCheck[key]);
+    let variantSelection = normalizeVariantSelection(selections[key]);
 
-    if (typeof value === "object") {
-      // Conditional style
+    if (isNullish(variantSelection) || isEmptyObject(variantSelection)) {
+      // Nullish or empty conditional
 
-      if (compoundCheck[key] !== value[conditionName]) {
+      variantSelection = normalizeVariantSelection(defaultVariants[key]);
+    }
+
+    if (isObject(compound) && isObject(variantSelection)) {
+      // Conditional styles
+
+      if (!shallowEqual(compound, variantSelection)) {
         return false;
       }
     } else {
-      // Unconditional style
-
-      if (conditionName !== "initial" || compoundCheck[key] !== value) {
+      if (compound !== variantSelection) {
         return false;
       }
     }
@@ -53,13 +64,18 @@ export const createRuntimeFn = <
     };
 
     for (const variantName in selections) {
-      const variantSelection =
-        selections[variantName] ?? config.defaultVariants[variantName];
+      let variantSelection = normalizeVariantSelection(selections[variantName]);
+
+      if (isNullish(variantSelection) || isEmptyObject(variantSelection)) {
+        // Nullish or empty conditional
+
+        variantSelection = config.defaultVariants[variantName];
+      }
 
       if (variantSelection != null) {
         let selection = variantSelection;
 
-        if (typeof selection === "object") {
+        if (isObject(selection)) {
           // Conditional style
 
           for (const conditionName in selection) {
@@ -97,18 +113,9 @@ export const createRuntimeFn = <
       }
     }
 
-    for (const [
-      compoundCheck,
-      compoundClassName,
-      conditionName,
-    ] of config.compoundVariants) {
+    for (const [compoundCheck, compoundClassName] of config.compoundVariants) {
       if (
-        shouldApplyCompound(
-          compoundCheck,
-          selections,
-          config.defaultVariants,
-          conditionName,
-        )
+        shouldApplyCompound(compoundCheck, selections, config.defaultVariants)
       ) {
         className += " " + compoundClassName;
       }

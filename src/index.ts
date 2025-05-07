@@ -1,4 +1,4 @@
-import { StyleRule, style, styleVariants } from "@vanilla-extract/css";
+import { style, StyleRule, styleVariants } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { createRuntimeFn } from "./createRuntimeFn";
 import type {
@@ -86,26 +86,8 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
                 ? `${debugId}_compound_${compounds.length}`
                 : `compound_${compounds.length}`,
             ),
-        "initial",
       ]);
     }
-
-    conditionNames.forEach((conditionName) => {
-      for (const { style: theStyle, variants } of compoundVariants) {
-        compounds.push([
-          variants,
-          typeof theStyle === "string"
-            ? theStyle
-            : style(
-                theStyle,
-                debugId
-                  ? `${debugId}_compound_${compounds.length}_${String(conditionName)}`
-                  : `compound_${compounds.length}__${String(conditionName)}`,
-              ),
-          conditionName,
-        ]);
-      }
-    });
 
     const responsiveVariants: PatternResult<
       Variants,

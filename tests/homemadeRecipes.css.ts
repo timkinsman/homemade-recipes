@@ -48,6 +48,38 @@ export const basic = homemadeRecipe({
   responsiveVariants: ["xs", "md", "xl"],
 });
 
+export const responsiveCompound = homemadeRecipe({
+  base: {},
+
+  variants: {
+    spaceWithDefault: {
+      small: {},
+      large: {},
+    },
+
+    color: {
+      red: {},
+      blue: {},
+    },
+  },
+
+  defaultVariants: {
+    spaceWithDefault: "small",
+  },
+
+  compoundVariants: [
+    {
+      variants: {
+        color: { xs: "red" },
+        spaceWithDefault: { initial: "small" },
+      },
+      style: {},
+    },
+  ],
+
+  responsiveVariants: ["xs"],
+});
+
 export const empty = homemadeRecipe({
   responsiveVariants: ["xs", "md", "xl"],
 });
