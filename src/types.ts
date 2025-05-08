@@ -1,12 +1,11 @@
-import type { StyleRule } from "@vanilla-extract/css";
+import type { ComplexStyleRule } from "@vanilla-extract/css";
 
 type Resolve<T> = {
   [Key in keyof T]: T[Key];
   // eslint-disable-next-line @typescript-eslint/ban-types
 } & {};
 
-type ComplexStyleRule = StyleRule | StyleRule[];
-type RecipeStyleRule = ComplexStyleRule; // | string;
+type RecipeStyleRule = ComplexStyleRule | string;
 
 export type VariantDefinitions = Record<string, RecipeStyleRule>;
 

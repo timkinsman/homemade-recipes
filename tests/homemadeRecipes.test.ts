@@ -1,11 +1,9 @@
 import {
   basic,
-  // definedStringBase,
-  // definedStringBaseArray,
+  definedStringBase,
+  definedStringBaseArray,
   empty,
 } from "./homemadeRecipes.css";
-
-// TODO: pass commented out test
 
 describe("homemadeRecipes", () => {
   // existing tests https://github.com/vanilla-extract-css/vanilla-extract/blob/master/tests/recipes/recipes.test.ts
@@ -93,37 +91,37 @@ describe("homemadeRecipes", () => {
     expect(empty()).toStrictEqual(empty.classNames.base);
   });
 
-  // it("should include generated base class name for provided string classes", () => {
-  //   expect(definedStringBase()).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a15 definedStringBase"`,
-  //   );
-  //   expect(definedStringBase.classNames.base).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a15"`,
-  //   );
+  it("should include generated base class name for provided string classes", () => {
+    expect(definedStringBase()).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9av definedStringBase"`,
+    );
+    expect(definedStringBase.classNames.base).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9av"`,
+    );
 
-  //   expect(definedStringBase({ variant: "simple" })).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a15 definedStringBase homemadeRecipes_variant_simple__ou4f9a16 simple-one"`,
-  //   );
-  //   expect(
-  //     definedStringBase.classNames.variants.variant.simple,
-  //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9a16"`);
-  // });
+    expect(definedStringBase({ variant: "simple" })).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9av definedStringBase homemadeRecipes_variant_simple__ou4f9aw simple-one"`,
+    );
+    expect(
+      definedStringBase.classNames.variants.variant.simple,
+    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9aw"`);
+  });
 
-  // it("should include generated base class name for provided array string classes", () => {
-  //   expect(definedStringBaseArray()).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a1a definedStringBaseInArray_1 definedStringBaseInArray_2"`,
-  //   );
-  //   expect(definedStringBaseArray.classNames.base).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a1a"`,
-  //   );
+  it("should include generated base class name for provided array string classes", () => {
+    expect(definedStringBaseArray()).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9a10 definedStringBaseInArray_1 definedStringBaseInArray_2"`,
+    );
+    expect(definedStringBaseArray.classNames.base).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9a10"`,
+    );
 
-  //   expect(definedStringBaseArray({ variant: "simple" })).toMatchInlineSnapshot(
-  //     `"homemadeRecipes__ou4f9a1a definedStringBaseInArray_1 definedStringBaseInArray_2 homemadeRecipes_variant_simple__ou4f9a1b simple-one simple-two"`,
-  //   );
-  //   expect(
-  //     definedStringBaseArray.classNames.variants.variant.simple,
-  //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9a1b"`);
-  // });
+    expect(definedStringBaseArray({ variant: "simple" })).toMatchInlineSnapshot(
+      `"homemadeRecipes__ou4f9a10 definedStringBaseInArray_1 definedStringBaseInArray_2 homemadeRecipes_variant_simple__ou4f9a11 simple-one simple-two"`,
+    );
+    expect(
+      definedStringBaseArray.classNames.variants.variant.simple,
+    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9a11"`);
+  });
 
   it("should expose variants class names", () => {
     expect([
@@ -223,33 +221,6 @@ describe("homemadeRecipes", () => {
       ]
     `);
   });
-
-  // it("should include generated base class name for condition provided string classes", () => {
-  //   //   expect(
-  //   //     definedStringBase({ variant: { initial: "simple", xs: "simple" } }),
-  //   //   ).toMatchInlineSnapshot(
-  //   //     `"homemadeRecipes__ou4f9a15 definedStringBase homemadeRecipes_variant_simple__ou4f9aw simple-one"`,
-  //   //   );
-  //   //   expect(
-  //   //     definedStringBase.classNames.responsiveVariants.initial.variant.simple,
-  //   //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9aw"`);
-  //   expect(
-  //     definedStringBase.classNames.responsiveVariants.xs.variant.simple,
-  //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple_xs__ou4f9a17"`);
-  // });
-
-  // it("should include generated base class name for condition provided array string classes", () => {
-  //   //   expect(definedStringBaseArray({ variant: "simple" })).toMatchInlineSnapshot(
-  //   //     `"homemadeRecipes__ou4f9a1a definedStringBaseInArray_1 definedStringBaseInArray_2 homemadeRecipes_variant_simple__ou4f9a1b simple-one simple-two"`,
-  //   //   );
-  //   //   expect(
-  //   //     definedStringBaseArray.classNames.responsiveVariants.initial.variant
-  //   //       .simple,
-  //   //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9a11"`);
-  //   expect(
-  //     definedStringBaseArray.classNames.responsiveVariants.xs.variant.simple,
-  //   ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple_xs__ou4f9a1c"`);
-  // });
 
   it("should expose condition variants class names", () => {
     expect([

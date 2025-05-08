@@ -108,8 +108,13 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
             const variantMap: Record<string, string> = {};
 
             Object.entries(variantGroup).forEach(([variantName, variant]) => {
-              let styleRule: StyleRule = normalizeToArray(variant).reduce(
+              let styleRule = normalizeToArray(variant).reduce<StyleRule>(
                 (acc, curr) => {
+                  // TODO: handle responsiveVariant classnames
+                  if (typeof curr === "string" || Array.isArray(curr)) {
+                    return acc;
+                  }
+
                   return { ...acc, ...curr };
                 },
                 {},
