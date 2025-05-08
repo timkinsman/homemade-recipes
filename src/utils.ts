@@ -1,4 +1,8 @@
-import { ConditionNames, VariantGroups, VariantSelection } from "./types";
+import {
+  ConditionNames,
+  ResponsiveVariantSelection,
+  VariantGroups,
+} from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mapValues<Input extends Record<string, any>, OutputValue>(
@@ -23,57 +27,27 @@ export function isEmptyObject(value: unknown) {
   return isObject(value) && Object.keys(value).length === 0;
 }
 
-/**
- * Normalizes a variant selection by extracting the `initial` value when it's the only property.
- * Used for simplifying variant selection objects when no conditional variants are needed.
- *
- * @example
- * normalizeVariantSelection('red');  // returns 'red'
- *
- * normalizeVariantSelection({ initial: 'red', xs: 'blue' }); // returns { initial: 'red', xs: 'blue' }
- *
- * normalizeVariantSelection({ initial: 'red' });  // returns 'red'
- */
-export const normalizeVariantSelection = <
+/** Returns `true` if `selection` is `{} | { initial: {} | null | undefined } | null | undefined` */
+export function isEmptyVariantSelection<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
   K extends keyof Variants,
->(
-  selection: VariantSelection<Variants, Conditions>[K],
-) => {
-  if (
-    isObject(selection) &&
-    Object.keys(selection).length === 1 &&
-    "initial" in selection
-  ) {
-    return selection.initial;
-  }
+>(selection: ResponsiveVariantSelection<Variants, Conditions>[K]) {
+  if (isObject(selection)) {
+    if (Object.keys(selection).length === 0) {
+      return true;
+    }
 
-  return selection;
-};
-
-// https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function shallowEqual<T extends Record<string, any>>(
-  object1: T,
-  object2: T,
-) {
-  const keys1 = Object.keys(object1) as (keyof T)[];
-  const keys2 = Object.keys(object2) as (keyof T)[];
-
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-
-  for (const key of keys1) {
-    if (object1[key] !== object2[key]) {
-      return false;
+    if (Object.keys(selection).length === 1) {
+      if ("initial" in selection) {
+        return (
+          isEmptyObject(selection.initial) ||
+          selection.initial === null ||
+          selection.initial === undefined
+        );
+      }
     }
   }
 
-  return true;
-}
-
-export function isNullish(value: unknown): value is null | undefined {
-  return value === null || value === undefined;
+  return selection === null || selection === undefined;
 }

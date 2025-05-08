@@ -3,7 +3,6 @@ import {
   // definedStringBase,
   // definedStringBaseArray,
   empty,
-  responsiveCompound,
 } from "./homemadeRecipes.css";
 
 // TODO: pass commented out test
@@ -87,9 +86,9 @@ describe("homemadeRecipes", () => {
   });
 
   it('should have base class name even when "base" prop is not defined', () => {
-    expect(empty()).toMatchInlineSnapshot(`"homemadeRecipes__ou4f9a14"`);
+    expect(empty()).toMatchInlineSnapshot(`"homemadeRecipes__ou4f9au"`);
     expect(empty.classNames.base).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a14"`,
+      `"homemadeRecipes__ou4f9au"`,
     );
     expect(empty()).toStrictEqual(empty.classNames.base);
   });
@@ -204,86 +203,14 @@ describe("homemadeRecipes", () => {
     );
   });
 
-  it("should return requested 'initial' conditional compound variants", () => {
-    expect(
-      basic({
-        spaceWithDefault: { initial: "small" },
-        color: { initial: "red" },
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
-    );
-  });
-
-  it("should return 'initial' conditional compound variants via defaultVariants", () => {
-    expect(basic({ color: { initial: "red" } })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
-    );
-  });
-
-  it("should return 'initial' conditional compound variants via defaultVariants, even when undefined is passed", () => {
-    expect(
-      basic({
-        color: { initial: "red" },
-        spaceWithDefault: { initial: undefined },
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
-    );
-  });
-
-  it("should return 'initial' conditional compound variants via defaultVariants, even when empty is passed", () => {
-    expect(
-      basic({
-        color: { initial: "red" },
-        spaceWithDefault: {},
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
-    );
-  });
-
   it("should return no compound variants", () => {
     expect(
       basic({
         spaceWithDefault: { initial: "small" },
-        color: { xs: "red" },
+        color: { initial: "red" },
       }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red_xs__ou4f9ad"`,
-    );
-  });
-
-  it("should return conditional compound variants", () => {
-    expect(
-      responsiveCompound({
-        color: { xs: "red" },
-        spaceWithDefault: { initial: "small" },
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9au homemadeRecipes_spaceWithDefault_small__ou4f9av homemadeRecipes_color_red_xs__ou4f9a12 homemadeRecipes_compound_0__ou4f9az"`,
-    );
-  });
-
-  it("should return conditional compound variants via defaultVariants, even when undefined is passed", () => {
-    expect(
-      responsiveCompound({
-        color: { xs: "red" },
-        spaceWithDefault: { initial: undefined },
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9au homemadeRecipes_spaceWithDefault_small__ou4f9av homemadeRecipes_color_red_xs__ou4f9a12 homemadeRecipes_compound_0__ou4f9az"`,
-    );
-  });
-
-  it("should return conditional compound variants via defaultVariants, even when empty is passed", () => {
-    expect(
-      responsiveCompound({
-        color: { xs: "red" },
-        spaceWithDefault: {},
-      }),
-    ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9au homemadeRecipes_spaceWithDefault_small__ou4f9av homemadeRecipes_color_red_xs__ou4f9a12 homemadeRecipes_compound_0__ou4f9az"`,
+      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5"`,
     );
   });
 

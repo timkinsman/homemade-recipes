@@ -2,47 +2,23 @@ import type {
   ConditionNames,
   PatternResult,
   RecipeClassNames,
+  ResponsiveVariantSelection,
   RuntimeFn,
   VariantGroups,
-  VariantSelection,
 } from "./types";
-import {
-  isEmptyObject,
-  isNullish,
-  isObject,
-  mapValues,
-  normalizeVariantSelection,
-  shallowEqual,
-} from "./utils";
+import { isEmptyVariantSelection, isObject, mapValues } from "./utils";
 
 const shouldApplyCompound = <
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
 >(
-  compoundCheck: VariantSelection<Variants, Conditions>,
-  selections: VariantSelection<Variants, Conditions>,
-  defaultVariants: VariantSelection<Variants, Conditions>,
+  compoundCheck: ResponsiveVariantSelection<Variants, Conditions>,
+  selections: ResponsiveVariantSelection<Variants, Conditions>,
+  defaultVariants: ResponsiveVariantSelection<Variants, Conditions>,
 ) => {
   for (const key of Object.keys(compoundCheck)) {
-    const compound = normalizeVariantSelection(compoundCheck[key]);
-    let variantSelection = normalizeVariantSelection(selections[key]);
-
-    if (isNullish(variantSelection) || isEmptyObject(variantSelection)) {
-      // Nullish or empty conditional
-
-      variantSelection = normalizeVariantSelection(defaultVariants[key]);
-    }
-
-    if (isObject(compound) && isObject(variantSelection)) {
-      // Conditional styles
-
-      if (!shallowEqual(compound, variantSelection)) {
-        return false;
-      }
-    } else {
-      if (compound !== variantSelection) {
-        return false;
-      }
+    if (compoundCheck[key] !== (selections[key] ?? defaultVariants[key])) {
+      return false;
     }
   }
 
@@ -58,17 +34,15 @@ export const createRuntimeFn = <
   const runtimeFn: RuntimeFn<Variants, Conditions> = (options) => {
     let className = config.defaultClassName;
 
-    const selections: VariantSelection<Variants, Conditions> = {
+    const selections: ResponsiveVariantSelection<Variants, Conditions> = {
       ...config.defaultVariants,
       ...options,
     };
 
     for (const variantName in selections) {
-      let variantSelection = normalizeVariantSelection(selections[variantName]);
+      let variantSelection = selections[variantName];
 
-      if (isNullish(variantSelection) || isEmptyObject(variantSelection)) {
-        // Nullish or empty conditional
-
+      if (isEmptyVariantSelection(variantSelection)) {
         variantSelection = config.defaultVariants[variantName];
       }
 
@@ -97,6 +71,8 @@ export const createRuntimeFn = <
             }
           }
         } else {
+          // Unconditional style
+
           if (typeof selection === "boolean") {
             // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L42
             selection = selection === true ? "true" : "false";

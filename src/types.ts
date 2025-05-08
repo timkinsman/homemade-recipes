@@ -16,17 +16,24 @@ export type BooleanMap<T> = T extends "true" | "false" ? boolean : T;
 
 export type VariantGroups = Record<string, VariantDefinitions>;
 
-export type VariantSelection<
+export type VariantSelection<Variants extends VariantGroups> = {
+  [VariantGroup in keyof Variants]?:
+    | BooleanMap<keyof Variants[VariantGroup]>
+    | undefined;
+};
+
+export type ResponsiveVariantSelection<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
 > = {
   [VariantGroup in keyof Variants]?:
     | BooleanMap<keyof Variants[VariantGroup]>
     | undefined
-    | (Partial<{ initial: BooleanMap<keyof Variants[VariantGroup]> }> &
-        Partial<{
+    | Partial<
+        { initial: BooleanMap<keyof Variants[VariantGroup]> } & {
           [C in Conditions[number]]: BooleanMap<keyof Variants[VariantGroup]>;
-        }>);
+        }
+      >;
 };
 
 export type VariantsClassNames<Variants extends VariantGroups> = {
@@ -48,17 +55,14 @@ export type PatternResult<
 > = {
   defaultClassName: string;
   variantClassNames: VariantsClassNames<Variants>;
-  defaultVariants: VariantSelection<Variants, Conditions>;
-  compoundVariants: Array<[VariantSelection<Variants, Conditions>, string]>;
+  defaultVariants: ResponsiveVariantSelection<Variants, Conditions>;
+  compoundVariants: Array<[VariantSelection<Variants>, string]>;
   responsiveVariants: ResponsiveVariants<Variants, Conditions>;
   conditionNames: Conditions;
 };
 
-export interface CompoundVariant<
-  Variants extends VariantGroups,
-  Conditions extends ConditionNames,
-> {
-  variants: VariantSelection<Variants, Conditions>;
+export interface CompoundVariant<Variants extends VariantGroups> {
+  variants: VariantSelection<Variants>;
   style: RecipeStyleRule;
 }
 
@@ -70,8 +74,8 @@ export type PatternOptions<
 > = {
   base?: RecipeStyleRule;
   variants?: Variants;
-  defaultVariants?: VariantSelection<Variants, Conditions>;
-  compoundVariants?: Array<CompoundVariant<Variants, Conditions>>;
+  defaultVariants?: ResponsiveVariantSelection<Variants, Conditions>;
+  compoundVariants?: Array<CompoundVariant<Variants>>;
   responsiveVariants?: Conditions;
 };
 
@@ -87,7 +91,9 @@ export type RecipeClassNames<
 export type RuntimeFn<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
-> = ((options?: Resolve<VariantSelection<Variants, Conditions>>) => string) & {
+> = ((
+  options?: Resolve<ResponsiveVariantSelection<Variants, Conditions>>,
+) => string) & {
   variants: () => (keyof Variants)[];
   classNames: RecipeClassNames<Variants, Conditions>;
   conditions: () => ConditionNames;
