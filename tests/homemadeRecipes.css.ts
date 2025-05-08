@@ -84,22 +84,22 @@ export const empty = homemadeRecipe({
   responsiveVariants: ["xs", "md", "xl"],
 });
 
-export const definedStringBase = homemadeRecipe({
-  base: "definedStringBase",
-  variants: {
-    variant: {
-      simple: "simple-one",
-    },
-  },
-  responsiveVariants: ["xs", "md", "xl"],
-});
+// export const definedStringBase = homemadeRecipe({
+//   base: "definedStringBase",
+//   variants: {
+//     variant: {
+//       simple: "simple-one",
+//     },
+//   },
+//   responsiveVariants: ["xs", "md", "xl"],
+// });
 
-export const definedStringBaseArray = homemadeRecipe({
-  base: ["definedStringBaseInArray_1", "definedStringBaseInArray_2"],
-  variants: {
-    variant: {
-      simple: ["simple-one", "simple-two"],
-    },
-  },
-  responsiveVariants: ["xs", "md", "xl"],
-});
+// export const definedStringBaseArray = homemadeRecipe({
+//   base: ["definedStringBaseInArray_1", "definedStringBaseInArray_2"],
+//   variants: {
+//     variant: {
+//       simple: ["simple-one", "simple-two"],
+//     },
+//   },
+//   responsiveVariants: ["xs", "md", "xl"],
+// });

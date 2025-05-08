@@ -101,37 +101,39 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
 
         const breakpoint = conditions[conditionName];
 
-        const variantGroupMap: Record<
-          string | number,
-          Record<string | number, string>
-        > = {};
+        const variantGroupMap: Record<string, Record<string, string>> = {};
 
-        Object.entries(variants).forEach(([variantGroupName, variantGroup]) => {
-          const variantMap: Record<string | number, string> = {};
+        Object.entries(variants as Variants).forEach(
+          ([variantGroupName, variantGroup]) => {
+            const variantMap: Record<string, string> = {};
 
-          Object.entries(variantGroup as Record<string, object>).forEach(
-            ([variantName, variant]) => {
-              let styleValue: StyleRule = variant;
+            Object.entries(variantGroup).forEach(([variantName, variant]) => {
+              let styleRule: StyleRule = normalizeToArray(variant).reduce(
+                (acc, curr) => {
+                  return { ...acc, ...curr };
+                },
+                {},
+              );
 
-              styleValue = {
+              styleRule = {
                 "@media": {
-                  [`screen and (min-width: ${breakpoint})`]: variant,
+                  [`screen and (min-width: ${breakpoint})`]: styleRule,
                 },
               };
 
               const className = style(
-                styleValue,
+                styleRule,
                 debugId
                   ? `${debugId}_${variantGroupName}_${String(variantName)}_${String(conditionName)}`
                   : `${variantGroupName}_${String(variantName)}_${String(conditionName)}`,
               );
 
               variantMap[variantName] = className;
-            },
-          );
+            });
 
-          variantGroupMap[variantGroupName] = variantMap;
-        });
+            variantGroupMap[variantGroupName] = variantMap;
+          },
+        );
 
         return { [conditionName]: variantGroupMap };
       }),
@@ -155,4 +157,12 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   }
 
   return homemadeRecipe;
+};
+
+const normalizeToArray = <T>(data: T | T[]): T[] => {
+  if (Array.isArray(data)) {
+    return [...data];
+  }
+
+  return [data];
 };

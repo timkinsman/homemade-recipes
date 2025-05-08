@@ -1,17 +1,18 @@
-import type { ComplexStyleRule } from "@vanilla-extract/css";
+import type { StyleRule } from "@vanilla-extract/css";
 
 type Resolve<T> = {
   [Key in keyof T]: T[Key];
   // eslint-disable-next-line @typescript-eslint/ban-types
 } & {};
 
-type RecipeStyleRule = ComplexStyleRule | string;
+type ComplexStyleRule = StyleRule | StyleRule[];
+type RecipeStyleRule = ComplexStyleRule; // | string;
 
 export type VariantDefinitions = Record<string, RecipeStyleRule>;
 
 export type ConditionNames = (string | number | symbol)[];
 
-type BooleanMap<T> = T extends "true" | "false" ? boolean : T;
+export type BooleanMap<T> = T extends "true" | "false" ? boolean : T;
 
 export type VariantGroups = Record<string, VariantDefinitions>;
 
