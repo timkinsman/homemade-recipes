@@ -73,6 +73,28 @@ export type ButtonVariants = NonNullable<
 >;
 ```
 
+> `responsiveVariants: ["sm"]` will generate an additional set of classes at build time.
+
+```css
+.button-recipe__4lwr860 {
+  border-radius: 6px;
+}
+.button-recipe_fullWidth_true__4lwr861 {
+  width: 100%;
+}
+.button-recipe_fullWidth_false__4lwr862 {
+  width: initial;
+}
++ @media screen and (min-width: 768px) {
++   .button-recipe_fullWidth_true_sm__4lwr863 {
++     width: 100%;
++   }
++   .button-recipe_fullWidth_false_sm__4lwr864 {
++     width: initial;
++   }
++ }
+```
+
 With this homemade recipe, you can now use it for your button component.
 
 ```tsx
@@ -94,6 +116,7 @@ import "./App.css";
 import { Button } from "./button";
 
 function App() {
+  // fullWidth?: boolean | { initial?: boolean; sm?: boolean; }
   return <Button fullWidth={{ initial: true, sm: false }} />;
 }
 
@@ -108,18 +131,20 @@ The following CSS classes will be applied to your `Button` component.
   border-radius: 6px;
 }
 
-/* fullWidth initial true styles */
+/* fullWidth initial styles */
 .button-recipe_fullWidth_true__4lwr861 {
   width: 100%;
 }
 
-/* fullWidth sm false styles */
+/* fullWidth sm styles */
 @media screen and (min-width: 768px) {
   .button-recipe_fullWidth_false_sm__4lwr864 {
     width: initial;
   }
 }
 ```
+
+[Check out the example.](/examples/react/)
 
 ## Contributing
 
