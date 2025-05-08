@@ -1,5 +1,13 @@
 # homemade-recipes
 
+## 0.1.3
+
+### Patch Changes
+
+- 943a737: chore: updated README
+- b36a056: refactor: removed support for responsive compounds. AFAIA stitches doesn't allow this
+- 943a737: fix: allow 'initial' conditional to be optional; compounds dependant on conditional choices (now removed)
+
 ## 0.1.2
 
 ### Patch Changes
