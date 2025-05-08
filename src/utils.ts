@@ -15,7 +15,7 @@ export function mapValues<Input extends Record<string, any>, OutputValue>(
   return result;
 }
 
-export function isObject(value: unknown) {
+export function isObject(value: unknown): value is object {
   return typeof value === "object" && value !== null;
 }
 
@@ -53,12 +53,13 @@ export const normalizeVariantSelection = <
 };
 
 // https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
-export function shallowEqual<T extends object, V extends object>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function shallowEqual<T extends Record<string, any>>(
   object1: T,
-  object2: V,
+  object2: T,
 ) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
+  const keys1 = Object.keys(object1) as (keyof T)[];
+  const keys2 = Object.keys(object2) as (keyof T)[];
 
   if (keys1.length !== keys2.length) {
     return false;
