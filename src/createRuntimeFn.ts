@@ -6,7 +6,7 @@ import type {
   RuntimeFn,
   VariantGroups,
 } from "./types";
-import { isEmptyVariantSelection, isObject, mapValues } from "./utils";
+import { isObject, mapValues } from "./utils";
 
 const shouldApplyCompound = <
   Variants extends VariantGroups,
@@ -40,17 +40,14 @@ export const createRuntimeFn = <
     };
 
     for (const variantName in selections) {
-      let variantSelection = selections[variantName];
-
-      if (isEmptyVariantSelection(variantSelection)) {
-        variantSelection = config.defaultVariants[variantName];
-      }
+      const variantSelection =
+        selections[variantName] ?? config.defaultVariants[variantName];
 
       if (variantSelection != null) {
         let selection = variantSelection;
 
         if (isObject(selection)) {
-          // Conditional style
+          // Conditional style (e.g. fullWidth={ initial: true })
 
           for (const conditionName in selection) {
             let value = selection[conditionName];
@@ -63,7 +60,9 @@ export const createRuntimeFn = <
 
               const selectionClassName =
                 // @ts-expect-error TODO
-                config.responsiveVariants[conditionName][variantName][value];
+                config.responsiveVariantClassNames[conditionName][variantName][
+                  value
+                ];
 
               if (selectionClassName) {
                 className += " " + selectionClassName;
@@ -71,7 +70,7 @@ export const createRuntimeFn = <
             }
           }
         } else {
-          // Unconditional style
+          // Unconditional style (e.g. fullWidth={true})
 
           if (typeof selection === "boolean") {
             // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L42
@@ -114,7 +113,7 @@ export const createRuntimeFn = <
     },
 
     get responsiveVariants() {
-      return config.responsiveVariants;
+      return config.responsiveVariantClassNames;
     },
   };
 

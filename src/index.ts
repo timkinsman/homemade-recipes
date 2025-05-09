@@ -1,10 +1,11 @@
-import { style, StyleRule, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { createRuntimeFn } from "./createRuntimeFn";
 import type {
   BaseConditions,
   PatternOptions,
   PatternResult,
+  ResponsiveVariantClassNames,
   RuntimeFn,
   VariantGroups,
 } from "./types";
@@ -43,7 +44,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       defaultVariants = {},
       compoundVariants = [],
       base,
-      responsiveVariants: conditionNames = [],
+      responsiveVariants = [],
     } = options;
 
     let defaultClassName;
@@ -89,68 +90,66 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       ]);
     }
 
-    const responsiveVariants: PatternResult<
-      Variants,
-      ConditionNames
-    >["responsiveVariants"] = Object.assign(
-      { initial: variantClassNames },
-      ...conditionNames.map((conditionName) => {
-        if (conditionName === "initial") {
-          throw new Error("'initial' is not allowed as a condition variant");
+    // @ts-expect-error TODO
+    let conditionClassNames: Omit<
+      ResponsiveVariantClassNames<Variants, ConditionNames>,
+      "initial"
+    > = {};
+
+    if (responsiveVariants !== undefined) {
+      responsiveVariants.forEach((responsiveVariant) => {
+        if (responsiveVariant === "initial") {
+          throw new Error("'initial' is not allowed as a responsiveVariant");
         }
 
-        const breakpoint = conditions[conditionName];
+        const breakpoint = conditions[responsiveVariant];
 
-        const variantGroupMap: Record<string, Record<string, string>> = {};
-
-        Object.entries(variants as Variants).forEach(
-          ([variantGroupName, variantGroup]) => {
-            const variantMap: Record<string, string> = {};
-
-            Object.entries(variantGroup).forEach(([variantName, variant]) => {
-              let styleRule = normalizeToArray(variant).reduce<StyleRule>(
-                (acc, curr) => {
-                  // TODO: handle responsiveVariant classnames
-                  if (typeof curr === "string" || Array.isArray(curr)) {
-                    return acc;
-                  }
-
-                  return { ...acc, ...curr };
-                },
-                {},
-              );
-
-              styleRule = {
+        // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L36
+        const variantClassNames: PatternResult<
+          Variants,
+          ConditionNames
+        >["variantClassNames"] = mapValues(
+          variants,
+          (variantGroup, variantGroupName) =>
+            styleVariants(
+              variantGroup,
+              (styleRule) => ({
+                // @ts-expect-error TODO
                 "@media": {
-                  [`screen and (min-width: ${breakpoint})`]: styleRule,
+                  [`screen and (min-width: ${breakpoint})`]:
+                    typeof styleRule === "string" ? [styleRule] : styleRule,
                 },
-              };
-
-              const className = style(
-                styleRule,
-                debugId
-                  ? `${debugId}_${variantGroupName}_${String(variantName)}_${String(conditionName)}`
-                  : `${variantGroupName}_${String(variantName)}_${String(conditionName)}`,
-              );
-
-              variantMap[variantName] = className;
-            });
-
-            variantGroupMap[variantGroupName] = variantMap;
-          },
+              }),
+              debugId
+                ? `${debugId}_${variantGroupName}_${String(responsiveVariant)}`
+                : `${variantGroupName}_${String(responsiveVariant)}`,
+            ),
         );
 
-        return { [conditionName]: variantGroupMap };
-      }),
-    );
+        conditionClassNames = {
+          ...conditionClassNames,
+          [responsiveVariant]: variantClassNames,
+        };
+      });
+    }
+
+    // @ts-expect-error TODO
+    const responsiveVariantClassNames: PatternResult<
+      Variants,
+      ConditionNames
+    >["responsiveVariantClassNames"] = {
+      initial: variantClassNames,
+      ...conditionClassNames,
+    };
 
     const config: PatternResult<Variants, ConditionNames> = {
       defaultClassName,
       variantClassNames,
       defaultVariants,
       compoundVariants: compounds,
-      responsiveVariants,
-      conditionNames: conditionNames as ConditionNames,
+      responsiveVariantClassNames,
+      // @ts-expect-error TODO
+      conditionNames: responsiveVariants,
     };
 
     return addFunctionSerializer(createRuntimeFn(config), {
@@ -162,12 +161,4 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   }
 
   return homemadeRecipe;
-};
-
-const normalizeToArray = <T>(data: T | T[]): T[] => {
-  if (Array.isArray(data)) {
-    return [...data];
-  }
-
-  return [data];
 };

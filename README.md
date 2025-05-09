@@ -83,14 +83,14 @@ export type ButtonVariants = NonNullable<
   width: 100%;
 }
 .button-recipe_fullWidth_false__4lwr862 {
-  width: initial;
+  width: unset;
 }
 + @media screen and (min-width: 768px) {
-+   .button-recipe_fullWidth_true_sm__4lwr863 {
++   .button-recipe_fullWidth_sm_true__4lwr863 {
 +     width: 100%;
 +   }
-+   .button-recipe_fullWidth_false_sm__4lwr864 {
-+     width: initial;
++   .button-recipe_fullWidth_sm_false__4lwr864 {
++     width: unset;
 +   }
 + }
 ```
@@ -138,8 +138,8 @@ The following CSS classes will be applied to your `Button` component.
 
 /* fullWidth sm styles */
 @media screen and (min-width: 768px) {
-  .button-recipe_fullWidth_false_sm__4lwr864 {
-    width: initial;
+  .button-recipe_fullWidth_sm_false__4lwr864 {
+    width: unset;
   }
 }
 ```

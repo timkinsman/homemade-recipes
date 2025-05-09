@@ -12,7 +12,7 @@ export const buttonRecipe = homemadeRecipe({
         width: "100%",
       },
       false: {
-        width: "initial",
+        width: "unset",
       },
     },
   },
