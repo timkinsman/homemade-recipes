@@ -12,10 +12,7 @@
     "esModuleInterop": true,
     "types": [],
     "jsx": "react",
-    "noEmit": false,
-    "outDir": "./dist"
+    "noEmit": false
   },
-
-  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

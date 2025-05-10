@@ -104,3 +104,5 @@ export type RuntimeFn<
 export type RecipeVariants<
   RecipeFn extends RuntimeFn<VariantGroups, ConditionNames>,
 > = Resolve<Parameters<RecipeFn>[0]>;
+
+export type ConditionalOptions<Conditions extends BaseConditions> = Conditions;

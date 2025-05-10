@@ -3,6 +3,7 @@ import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { createRuntimeFn } from "./createRuntimeFn";
 import type {
   BaseConditions,
+  ConditionalOptions,
   PatternOptions,
   PatternResult,
   ResponsiveVariantClassNames,
@@ -15,8 +16,6 @@ export type {
   RecipeVariants as HomemadeRecipeVariants,
   RuntimeFn,
 } from "./types";
-
-type ConditionalOptions<Conditions extends BaseConditions> = Conditions;
 
 /**
  * @param conditions Key/value pairs where the keys become your responsive modifiers, and the values are the min-width where that breakpoint should start.

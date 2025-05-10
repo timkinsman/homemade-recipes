@@ -10,19 +10,19 @@ describe("homemadeRecipes", () => {
 
   it("should return default variants for no options", () => {
     expect(basic()).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91"`,
     );
   });
 
   it("should return default variants for empty options", () => {
     expect(basic({})).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91"`,
     );
   });
 
   it("should return default variants for undefined options", () => {
     expect(basic({ spaceWithDefault: undefined })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91"`,
     );
   });
 
@@ -34,7 +34,7 @@ describe("homemadeRecipes", () => {
         color: "blue",
       }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_large__ou4f9a2 homemadeRecipes_spaceWithoutDefault_small__ou4f9a3 homemadeRecipes_color_blue__ou4f9a6"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_large__f9cdv92 homemadeRecipes_spaceWithoutDefault_small__f9cdv93 homemadeRecipes_color_blue__f9cdv96"`,
     );
   });
 
@@ -42,13 +42,13 @@ describe("homemadeRecipes", () => {
     expect(
       basic({ spaceWithDefault: "small", color: "red" }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91 homemadeRecipes_color_red__f9cdv95 homemadeRecipes_compound_0__f9cdv98"`,
     );
   });
 
   it("should return compound variants via defaultVariants", () => {
     expect(basic({ color: "red" })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91 homemadeRecipes_color_red__f9cdv95 homemadeRecipes_compound_0__f9cdv98"`,
     );
   });
 
@@ -56,19 +56,19 @@ describe("homemadeRecipes", () => {
     expect(
       basic({ color: "red", spaceWithDefault: undefined }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5 homemadeRecipes_compound_0__ou4f9a8"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91 homemadeRecipes_color_red__f9cdv95 homemadeRecipes_compound_0__f9cdv98"`,
     );
   });
 
   it("should return boolean variants", () => {
     expect(basic({ rounded: true })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_rounded_true__ou4f9a7"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91 homemadeRecipes_rounded_true__f9cdv97"`,
     );
   });
 
   it("should ignore missing boolean variants", () => {
     expect(basic({ rounded: false })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91"`,
     );
   });
 
@@ -84,43 +84,43 @@ describe("homemadeRecipes", () => {
   });
 
   it('should have base class name even when "base" prop is not defined', () => {
-    expect(empty()).toMatchInlineSnapshot(`"homemadeRecipes__ou4f9au"`);
+    expect(empty()).toMatchInlineSnapshot(`"homemadeRecipes__f9cdv9u"`);
     expect(empty.classNames.base).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9au"`,
+      `"homemadeRecipes__f9cdv9u"`,
     );
     expect(empty()).toStrictEqual(empty.classNames.base);
   });
 
   it("should include generated base class name for provided string classes", () => {
     expect(definedStringBase()).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9av definedStringBase"`,
+      `"homemadeRecipes__f9cdv9v definedStringBase"`,
     );
     expect(definedStringBase.classNames.base).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9av"`,
+      `"homemadeRecipes__f9cdv9v"`,
     );
 
     expect(definedStringBase({ variant: "simple" })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9av definedStringBase homemadeRecipes_variant_simple__ou4f9aw simple-one"`,
+      `"homemadeRecipes__f9cdv9v definedStringBase homemadeRecipes_variant_simple__f9cdv9w simple-one"`,
     );
     expect(
       definedStringBase.classNames.variants.variant.simple,
-    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9aw"`);
+    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__f9cdv9w"`);
   });
 
   it("should include generated base class name for provided array string classes", () => {
     expect(definedStringBaseArray()).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a10 definedStringBaseInArray_1 definedStringBaseInArray_2"`,
+      `"homemadeRecipes__f9cdv910 definedStringBaseInArray_1 definedStringBaseInArray_2"`,
     );
     expect(definedStringBaseArray.classNames.base).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a10"`,
+      `"homemadeRecipes__f9cdv910"`,
     );
 
     expect(definedStringBaseArray({ variant: "simple" })).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a10 definedStringBaseInArray_1 definedStringBaseInArray_2 homemadeRecipes_variant_simple__ou4f9a11 simple-one simple-two"`,
+      `"homemadeRecipes__f9cdv910 definedStringBaseInArray_1 definedStringBaseInArray_2 homemadeRecipes_variant_simple__f9cdv911 simple-one simple-two"`,
     );
     expect(
       definedStringBaseArray.classNames.variants.variant.simple,
-    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__ou4f9a11"`);
+    ).toMatchInlineSnapshot(`"homemadeRecipes_variant_simple__f9cdv911"`);
   });
 
   it("should expose variants class names", () => {
@@ -135,14 +135,14 @@ describe("homemadeRecipes", () => {
       basic.classNames.variants.rounded.true,
     ]).toMatchInlineSnapshot(`
       [
-        "homemadeRecipes__ou4f9a0",
-        "homemadeRecipes_spaceWithDefault_large__ou4f9a2",
-        "homemadeRecipes_spaceWithDefault_small__ou4f9a1",
-        "homemadeRecipes_spaceWithoutDefault_large__ou4f9a4",
-        "homemadeRecipes_spaceWithoutDefault_small__ou4f9a3",
-        "homemadeRecipes_color_blue__ou4f9a6",
-        "homemadeRecipes_color_red__ou4f9a5",
-        "homemadeRecipes_rounded_true__ou4f9a7",
+        "homemadeRecipes__f9cdv90",
+        "homemadeRecipes_spaceWithDefault_large__f9cdv92",
+        "homemadeRecipes_spaceWithDefault_small__f9cdv91",
+        "homemadeRecipes_spaceWithoutDefault_large__f9cdv94",
+        "homemadeRecipes_spaceWithoutDefault_small__f9cdv93",
+        "homemadeRecipes_color_blue__f9cdv96",
+        "homemadeRecipes_color_red__f9cdv95",
+        "homemadeRecipes_rounded_true__f9cdv97",
       ]
     `);
   });
@@ -158,7 +158,7 @@ describe("homemadeRecipes", () => {
         color: {},
         rounded: {},
       }),
-    ).toMatchInlineSnapshot(`"homemadeRecipes__ou4f9a0"`);
+    ).toMatchInlineSnapshot(`"homemadeRecipes__f9cdv90"`);
   });
 
   it("should return requested variants", () => {
@@ -178,7 +178,7 @@ describe("homemadeRecipes", () => {
         },
       }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_large__ou4f9a2 homemadeRecipes_spaceWithDefault_xs_small__ou4f9a9 homemadeRecipes_spaceWithoutDefault_small__ou4f9a3 homemadeRecipes_spaceWithoutDefault_md_large__ou4f9aj homemadeRecipes_color_blue__ou4f9a6 homemadeRecipes_color_xl_red__ou4f9ar"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_large__f9cdv92 homemadeRecipes_spaceWithDefault_xs_small__f9cdv99 homemadeRecipes_spaceWithoutDefault_small__f9cdv93 homemadeRecipes_spaceWithoutDefault_md_large__f9cdv9j homemadeRecipes_color_blue__f9cdv96 homemadeRecipes_color_xl_red__f9cdv9r"`,
     );
   });
 
@@ -196,7 +196,7 @@ describe("homemadeRecipes", () => {
         },
       }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_xs_small__ou4f9a9 homemadeRecipes_spaceWithoutDefault_md_large__ou4f9aj homemadeRecipes_color_xl_red__ou4f9ar"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_xs_small__f9cdv99 homemadeRecipes_spaceWithoutDefault_md_large__f9cdv9j homemadeRecipes_color_xl_red__f9cdv9r"`,
     );
   });
 
@@ -208,7 +208,7 @@ describe("homemadeRecipes", () => {
         color: { initial: "red" },
       }),
     ).toMatchInlineSnapshot(
-      `"homemadeRecipes__ou4f9a0 homemadeRecipes_spaceWithDefault_small__ou4f9a1 homemadeRecipes_color_red__ou4f9a5"`,
+      `"homemadeRecipes__f9cdv90 homemadeRecipes_spaceWithDefault_small__f9cdv91 homemadeRecipes_color_red__f9cdv95"`,
     );
   });
 
@@ -254,34 +254,34 @@ describe("homemadeRecipes", () => {
       basic.classNames.responsiveVariants.xl.rounded.true,
     ]).toMatchInlineSnapshot(`
       [
-        "homemadeRecipes_spaceWithDefault_large__ou4f9a2",
-        "homemadeRecipes_spaceWithDefault_small__ou4f9a1",
-        "homemadeRecipes_spaceWithoutDefault_large__ou4f9a4",
-        "homemadeRecipes_spaceWithoutDefault_small__ou4f9a3",
-        "homemadeRecipes_color_blue__ou4f9a6",
-        "homemadeRecipes_color_red__ou4f9a5",
-        "homemadeRecipes_rounded_true__ou4f9a7",
-        "homemadeRecipes_spaceWithDefault_xs_large__ou4f9aa",
-        "homemadeRecipes_spaceWithDefault_xs_small__ou4f9a9",
-        "homemadeRecipes_spaceWithoutDefault_xs_large__ou4f9ac",
-        "homemadeRecipes_spaceWithoutDefault_xs_small__ou4f9ab",
-        "homemadeRecipes_color_xs_blue__ou4f9ae",
-        "homemadeRecipes_color_xs_red__ou4f9ad",
-        "homemadeRecipes_rounded_xs_true__ou4f9af",
-        "homemadeRecipes_spaceWithDefault_md_large__ou4f9ah",
-        "homemadeRecipes_spaceWithDefault_md_small__ou4f9ag",
-        "homemadeRecipes_spaceWithoutDefault_md_large__ou4f9aj",
-        "homemadeRecipes_spaceWithoutDefault_md_small__ou4f9ai",
-        "homemadeRecipes_color_md_blue__ou4f9al",
-        "homemadeRecipes_color_md_red__ou4f9ak",
-        "homemadeRecipes_rounded_md_true__ou4f9am",
-        "homemadeRecipes_spaceWithDefault_xl_large__ou4f9ao",
-        "homemadeRecipes_spaceWithDefault_xl_small__ou4f9an",
-        "homemadeRecipes_spaceWithoutDefault_xl_large__ou4f9aq",
-        "homemadeRecipes_spaceWithoutDefault_xl_small__ou4f9ap",
-        "homemadeRecipes_color_xl_blue__ou4f9as",
-        "homemadeRecipes_color_xl_red__ou4f9ar",
-        "homemadeRecipes_rounded_xl_true__ou4f9at",
+        "homemadeRecipes_spaceWithDefault_large__f9cdv92",
+        "homemadeRecipes_spaceWithDefault_small__f9cdv91",
+        "homemadeRecipes_spaceWithoutDefault_large__f9cdv94",
+        "homemadeRecipes_spaceWithoutDefault_small__f9cdv93",
+        "homemadeRecipes_color_blue__f9cdv96",
+        "homemadeRecipes_color_red__f9cdv95",
+        "homemadeRecipes_rounded_true__f9cdv97",
+        "homemadeRecipes_spaceWithDefault_xs_large__f9cdv9a",
+        "homemadeRecipes_spaceWithDefault_xs_small__f9cdv99",
+        "homemadeRecipes_spaceWithoutDefault_xs_large__f9cdv9c",
+        "homemadeRecipes_spaceWithoutDefault_xs_small__f9cdv9b",
+        "homemadeRecipes_color_xs_blue__f9cdv9e",
+        "homemadeRecipes_color_xs_red__f9cdv9d",
+        "homemadeRecipes_rounded_xs_true__f9cdv9f",
+        "homemadeRecipes_spaceWithDefault_md_large__f9cdv9h",
+        "homemadeRecipes_spaceWithDefault_md_small__f9cdv9g",
+        "homemadeRecipes_spaceWithoutDefault_md_large__f9cdv9j",
+        "homemadeRecipes_spaceWithoutDefault_md_small__f9cdv9i",
+        "homemadeRecipes_color_md_blue__f9cdv9l",
+        "homemadeRecipes_color_md_red__f9cdv9k",
+        "homemadeRecipes_rounded_md_true__f9cdv9m",
+        "homemadeRecipes_spaceWithDefault_xl_large__f9cdv9o",
+        "homemadeRecipes_spaceWithDefault_xl_small__f9cdv9n",
+        "homemadeRecipes_spaceWithoutDefault_xl_large__f9cdv9q",
+        "homemadeRecipes_spaceWithoutDefault_xl_small__f9cdv9p",
+        "homemadeRecipes_color_xl_blue__f9cdv9s",
+        "homemadeRecipes_color_xl_red__f9cdv9r",
+        "homemadeRecipes_rounded_xl_true__f9cdv9t",
       ]
     `);
   });

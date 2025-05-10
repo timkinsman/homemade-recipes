@@ -60,7 +60,7 @@ export const buttonRecipe = homemadeRecipe({
         width: "100%",
       },
       false: {
-        width: "initial",
+        width: "unset",
       },
     },
   },
@@ -144,7 +144,7 @@ The following CSS classes will be applied to your `Button` component.
 }
 ```
 
-[Check out the example.](/examples/react/)
+[Check out the example.](/apps/react/)
 
 ## Contributing
 
