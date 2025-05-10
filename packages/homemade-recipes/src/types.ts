@@ -106,3 +106,8 @@ export type RecipeVariants<
 > = Resolve<Parameters<RecipeFn>[0]>;
 
 export type ConditionalOptions<Conditions extends BaseConditions> = Conditions;
+
+export type CssCache<Conditions extends BaseConditions> = {
+  selector: string;
+  responsiveVariant: keyof Conditions;
+}[];

@@ -5,11 +5,12 @@ import {
   styleVariants,
 } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
-import { createRuntimeFn } from "./createRuntimeFn";
-import { createSheet, getStyle } from "./sheet";
+import { homemadeRecipeRuntime } from "./homemadeRecipeRuntime";
+import { injectAdditionalCssRuntime } from "./injectAdditionalCssRuntime";
 import type {
   BaseConditions,
   ConditionalOptions,
+  CssCache,
   PatternOptions,
   PatternResult,
   ResponsiveVariantClassNames,
@@ -37,8 +38,7 @@ export type {
 export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   conditions: ConditionalOptions<Conditions>,
 ) => {
-  const cssCache: { selector: string; responsiveVariant: keyof Conditions }[] =
-    [];
+  const cssCache: CssCache<Conditions> = [];
 
   function homemadeRecipe<
     Variants extends VariantGroups,
@@ -202,9 +202,9 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       conditionNames: responsiveVariants,
     };
 
-    return addFunctionSerializer(createRuntimeFn(config), {
-      importPath: "homemade-recipes/dist/createRuntimeFn",
-      importName: "createRuntimeFn",
+    return addFunctionSerializer(homemadeRecipeRuntime(config), {
+      importPath: "homemade-recipes/dist/homemadeRecipeRuntime",
+      importName: "homemadeRecipeRuntime",
       // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
       args: [config],
     });
@@ -213,28 +213,18 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   const identifier = generateIdentifier();
 
   function injectAdditionalCss() {
-    if (typeof window === "undefined") {
-      throw Error("`appendAdditionalCss only works in Client Components.");
-    }
+    const config = {
+      conditions,
+      identifier,
+      cssCache,
+    };
 
-    const sheet = createSheet(identifier);
-
-    cssCache.forEach((css) => {
-      const propStr = getStyle(css.selector);
-
-      if (propStr === undefined) {
-        return console.warn("CSS class not found:", css.selector);
-      }
-
-      const breakpoint = conditions[css.responsiveVariant];
-
-      sheet.insertRule(
-        `@media screen and (min-width: ${breakpoint}) {.${css.selector}_${String(css.responsiveVariant)}{${propStr}}}`,
-        sheet.cssRules.length,
-      );
+    return addFunctionSerializer(injectAdditionalCssRuntime(config), {
+      importPath: "homemade-recipes/dist/injectAdditionalCssRuntime",
+      importName: "injectAdditionalCssRuntime",
+      // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
+      args: [config],
     });
-
-    return sheet;
   }
 
   return { homemadeRecipe, injectAdditionalCss };

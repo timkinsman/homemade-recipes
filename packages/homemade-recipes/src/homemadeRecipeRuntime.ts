@@ -25,7 +25,7 @@ const shouldApplyCompound = <
   return true;
 };
 
-export const createRuntimeFn = <
+export const homemadeRecipeRuntime = <
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
 >(
