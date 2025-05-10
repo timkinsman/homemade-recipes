@@ -1,6 +1,12 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import {
+  StyleRule,
+  generateIdentifier,
+  style,
+  styleVariants,
+} from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { createRuntimeFn } from "./createRuntimeFn";
+import { createSheet, getStyle } from "./sheet";
 import type {
   BaseConditions,
   ConditionalOptions,
@@ -31,6 +37,9 @@ export type {
 export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   conditions: ConditionalOptions<Conditions>,
 ) => {
+  const cssCache: { selector: string; responsiveVariant: keyof Conditions }[] =
+    [];
+
   function homemadeRecipe<
     Variants extends VariantGroups,
     ConditionNames extends Array<keyof Conditions>,
@@ -103,25 +112,67 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
 
         const breakpoint = conditions[responsiveVariant];
 
+        const styleRuleVariants: Partial<Variants> = {};
+
+        Object.entries(variants).forEach(([variantGroupName, variantGroup]) => {
+          // @ts-expect-error TODO
+          Object.entries(variantGroup).forEach(([variantName, variant]) => {
+            const rules = !Array.isArray(variant) ? [variant] : variant;
+
+            const classList: string[] = [];
+            const styleRules: StyleRule[] = [];
+
+            for (const rule of rules) {
+              if (typeof rule === "string") {
+                classList.push(`${rule}_${String(responsiveVariant)}`);
+
+                if (
+                  !cssCache.some(
+                    (css) =>
+                      css.selector === rule &&
+                      css.responsiveVariant === responsiveVariant,
+                  )
+                ) {
+                  // handled in `appendAdditionalCss`
+                  cssCache.push({ selector: rule, responsiveVariant });
+                }
+              } else {
+                // styleRules.push(rule);
+
+                styleRules.push({
+                  "@media": {
+                    [`screen and (min-width: ${breakpoint})`]: rule,
+                  },
+                });
+              }
+            }
+
+            if (styleRuleVariants[variantGroupName] === undefined) {
+              // @ts-expect-error TODO
+              styleRuleVariants[variantGroupName] = {};
+            }
+
+            // @ts-expect-error TODO
+            styleRuleVariants[variantGroupName][variantName] = [
+              ...classList,
+              ...styleRules,
+            ];
+          });
+        });
+
         // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L36
         const variantClassNames: PatternResult<
           Variants,
           ConditionNames
         >["variantClassNames"] = mapValues(
-          variants,
+          styleRuleVariants,
           (variantGroup, variantGroupName) =>
             styleVariants(
-              variantGroup,
-              (styleRule) => ({
-                // @ts-expect-error TODO
-                "@media": {
-                  [`screen and (min-width: ${breakpoint})`]:
-                    typeof styleRule === "string" ? [styleRule] : styleRule,
-                },
-              }),
+              variantGroup ?? {},
+              (styleRule) => styleRule,
               debugId
-                ? `${debugId}_${variantGroupName}_${String(responsiveVariant)}`
-                : `${variantGroupName}_${String(responsiveVariant)}`,
+                ? `${debugId}_${String(variantGroupName)}_${String(responsiveVariant)}`
+                : `${String(variantGroupName)}_${String(responsiveVariant)}`,
             ),
         );
 
@@ -159,5 +210,32 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
     });
   }
 
-  return homemadeRecipe;
+  const identifier = generateIdentifier();
+
+  function injectAdditionalCss() {
+    if (typeof window === "undefined") {
+      throw Error("`appendAdditionalCss only works in Client Components.");
+    }
+
+    const sheet = createSheet(identifier);
+
+    cssCache.forEach((css) => {
+      const propStr = getStyle(css.selector);
+
+      if (propStr === undefined) {
+        return console.warn("CSS class not found:", css.selector);
+      }
+
+      const breakpoint = conditions[css.responsiveVariant];
+
+      sheet.insertRule(
+        `@media screen and (min-width: ${breakpoint}) {.${css.selector}_${String(css.responsiveVariant)}{${propStr}}}`,
+        sheet.cssRules.length,
+      );
+    });
+
+    return sheet;
+  }
+
+  return { homemadeRecipe, injectAdditionalCss };
 };

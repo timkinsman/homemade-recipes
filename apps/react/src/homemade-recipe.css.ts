@@ -1,6 +1,6 @@
 import { createHomemadeRecipe } from "homemade-recipes";
 
-export const homemadeRecipe = createHomemadeRecipe({
+export const { homemadeRecipe } = createHomemadeRecipe({
   /** Phones (landscape) */
   xs: "520px",
   /** Tablets (portrait) */
