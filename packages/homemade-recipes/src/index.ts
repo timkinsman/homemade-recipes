@@ -203,7 +203,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
     };
 
     return addFunctionSerializer(homemadeRecipeRuntime(config), {
-      importPath: "homemade-recipes/dist/homemadeRecipeRuntime",
+      importPath: "homemade-recipes/homemadeRecipeRuntime",
       importName: "homemadeRecipeRuntime",
       // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
       args: [config],
@@ -220,7 +220,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
     };
 
     return addFunctionSerializer(injectAdditionalCssRuntime(config), {
-      importPath: "homemade-recipes/dist/injectAdditionalCssRuntime",
+      importPath: "homemade-recipes/injectAdditionalCssRuntime",
       importName: "injectAdditionalCssRuntime",
       // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
       args: [config],

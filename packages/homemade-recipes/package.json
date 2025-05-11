@@ -4,8 +4,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index",
-  "types": "dist/index",
   "files": [
     "dist"
   ],
@@ -13,7 +11,8 @@
     "test": "jest",
     "build": "pnpm run clean && pnpm run compile",
     "clean": "rimraf ./dist",
-    "compile": "tsc -p tsconfig.build.json",
+    "compile": "tsup",
+    "compile:watch": "tsup --watch",
     "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
@@ -22,7 +21,26 @@
   "devDependencies": {
     "@types/react": "19.0.2",
     "@vanilla-extract/css": "1.16.1",
+    "@vanilla-extract/esbuild-plugin": "^2.3.12",
     "rimraf": "~5.0.0",
+    "tsup": "^8.3.5",
     "typescript": "~5.3.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "module": "./dist/index.mjs",
+      "default": "./dist/index.js"
+    },
+    "./homemadeRecipeRuntime": {
+      "types": "./dist/homemadeRecipeRuntime.d.ts",
+      "module": "./dist/homemadeRecipeRuntime.mjs",
+      "default": "./dist/homemadeRecipeRuntime.js"
+    },
+    "./injectAdditionalCssRuntime": {
+      "types": "./dist/injectAdditionalCssRuntime.d.ts",
+      "module": "./dist/injectAdditionalCssRuntime.mjs",
+      "default": "./dist/injectAdditionalCssRuntime.js"
+    }
   }
 }
