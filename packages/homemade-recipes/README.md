@@ -79,7 +79,6 @@ export type ButtonVariants = NonNullable<
 > `responsiveVariants: ["sm"]` will generate an additional set of classes at build time.
 
 ```css
-/*  */
 .button-recipe__4lwr860 {
   border-radius: 6px;
 }
@@ -99,7 +98,7 @@ export type ButtonVariants = NonNullable<
 + }
 ```
 
-[appendCss](./src/sheet.ts) will generate.
+[appendCss](./src/sheet.ts#L69) will generate.
 
 ```html
 <style
