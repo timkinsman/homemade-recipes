@@ -1,4 +1,6 @@
+import { appendCss } from "./sheet";
 import type {
+  BaseConditions,
   ConditionNames,
   PatternResult,
   RecipeClassNames,
@@ -25,11 +27,12 @@ const shouldApplyCompound = <
   return true;
 };
 
-export const homemadeRecipeRuntime = <
+export const createRuntimeFn = <
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
+  C extends BaseConditions,
 >(
-  config: PatternResult<Variants, Conditions>,
+  config: PatternResult<Variants, Conditions, C>,
 ): RuntimeFn<Variants, Conditions> => {
   const runtimeFn: RuntimeFn<Variants, Conditions> = (options) => {
     let className = config.defaultClassName;
@@ -94,6 +97,16 @@ export const homemadeRecipeRuntime = <
       ) {
         className += " " + compoundClassName;
       }
+    }
+
+    const { conditions, identifier, cssCache } = config;
+
+    if (cssCache.length > 0) {
+      appendCss({
+        conditions,
+        identifier,
+        cssCache,
+      });
     }
 
     return className;

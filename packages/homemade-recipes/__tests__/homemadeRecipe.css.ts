@@ -1,6 +1,6 @@
 import { createHomemadeRecipe } from "../src";
 
-export const { homemadeRecipe, injectAdditionalCss } = createHomemadeRecipe({
+export const homemadeRecipe = createHomemadeRecipe({
   /** Phones (landscape) */
   xs: "520px",
   /** Tablets (portrait) */

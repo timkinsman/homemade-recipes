@@ -63,6 +63,9 @@ export const buttonRecipe = homemadeRecipe({
         width: "unset",
       },
     },
+    variant: {
+      bright: "bright",
+    },
   },
 
   responsiveVariants: ["sm"],
@@ -76,6 +79,7 @@ export type ButtonVariants = NonNullable<
 > `responsiveVariants: ["sm"]` will generate an additional set of classes at build time.
 
 ```css
+/*  */
 .button-recipe__4lwr860 {
   border-radius: 6px;
 }
@@ -95,6 +99,25 @@ export type ButtonVariants = NonNullable<
 + }
 ```
 
+[appendCss](./src/sheet.ts) will generate.
+
+```html
+<style
+  data-package="homemade-recipes"
+  data-identifier="homemade-recipe__1qtsqlc0"
+  type="text/css"
+>
+  @media screen and (min-width: 768px) {
+    .bright_sm {
+      color: orange;
+      font-family: Arial;
+    }
+  }
+</style>
+```
+
+> By passing in an existing class (i.e. [bright](/apps/vite-react-ts/src/index.css#L70)), `bright_sm` can now be created.
+
 With this homemade recipe, you can now use it for your button component.
 
 ```tsx
@@ -103,8 +126,12 @@ import { ButtonVariants, buttonRecipe } from "./button-recipe.css";
 
 type ButtonProps = ButtonVariants;
 
-export const Button = ({ fullWidth }: ButtonProps) => {
-  return <button className={buttonRecipe({ fullWidth })}>Hello world</button>;
+export const Button = ({ fullWidth, variant }: ButtonProps) => {
+  return (
+    <button className={buttonRecipe({ fullWidth, variant })}>
+      Hello world
+    </button>
+  );
 };
 ```
 
@@ -116,8 +143,14 @@ import "./App.css";
 import { Button } from "./button";
 
 function App() {
-  // fullWidth?: boolean | { initial?: boolean; sm?: boolean; }
-  return <Button fullWidth={{ initial: true, sm: false }} />;
+  return (
+    <Button
+      // fullWidth?: boolean | { initial?: boolean; sm?: boolean; }
+      fullWidth={{ initial: true, sm: false }}
+      // variant?: "bright" | { initial?: "bright"; sm?: "bright"; }
+      variant={{ sm: "bright" }}
+    />
+  );
 }
 
 export default App;
@@ -125,26 +158,34 @@ export default App;
 
 The following CSS classes will be applied to your `Button` component.
 
+```
+button-recipe__1d33wle0 button-recipe_fullWidth_true__1d33wle1 button-recipe_fullWidth_sm_false__1d33wle5 bright_sm
+```
+
 ```css
-/* base styles */
 .button-recipe__4lwr860 {
   border-radius: 6px;
 }
 
-/* fullWidth initial styles */
 .button-recipe_fullWidth_true__4lwr861 {
   width: 100%;
 }
 
-/* fullWidth sm styles */
 @media screen and (min-width: 768px) {
   .button-recipe_fullWidth_sm_false__4lwr864 {
     width: unset;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .bright_sm {
+    color: orange;
+    font-family: Arial;
+  }
+}
 ```
 
-[Check out the example.](/apps/react/)
+[Check out the example.](/apps/vite-react-ts/)
 
 ## Contributing
 

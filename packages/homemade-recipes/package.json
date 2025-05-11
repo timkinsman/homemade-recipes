@@ -32,15 +32,10 @@
       "module": "./dist/index.mjs",
       "default": "./dist/index.js"
     },
-    "./homemadeRecipeRuntime": {
-      "types": "./dist/homemadeRecipeRuntime.d.ts",
-      "module": "./dist/homemadeRecipeRuntime.mjs",
-      "default": "./dist/homemadeRecipeRuntime.js"
-    },
-    "./injectAdditionalCssRuntime": {
-      "types": "./dist/injectAdditionalCssRuntime.d.ts",
-      "module": "./dist/injectAdditionalCssRuntime.mjs",
-      "default": "./dist/injectAdditionalCssRuntime.js"
+    "./createRuntimeFn": {
+      "types": "./dist/createRuntimeFn.d.ts",
+      "module": "./dist/createRuntimeFn.mjs",
+      "default": "./dist/createRuntimeFn.js"
     }
   }
 }

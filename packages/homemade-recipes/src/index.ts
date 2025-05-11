@@ -5,8 +5,7 @@ import {
   styleVariants,
 } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
-import { homemadeRecipeRuntime } from "./homemadeRecipeRuntime";
-import { injectAdditionalCssRuntime } from "./injectAdditionalCssRuntime";
+import { createRuntimeFn } from "./createRuntimeFn";
 import type {
   BaseConditions,
   ConditionalOptions,
@@ -38,6 +37,7 @@ export type {
 export const createHomemadeRecipe = <Conditions extends BaseConditions>(
   conditions: ConditionalOptions<Conditions>,
 ) => {
+  const identifier = generateIdentifier();
   const cssCache: CssCache<Conditions> = [];
 
   function homemadeRecipe<
@@ -81,7 +81,8 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
 
     const compounds: PatternResult<
       Variants,
-      ConditionNames
+      ConditionNames,
+      Conditions
     >["compoundVariants"] = [];
 
     for (const { style: theStyle, variants } of compoundVariants) {
@@ -126,15 +127,17 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
               if (typeof rule === "string") {
                 classList.push(`${rule}_${String(responsiveVariant)}`);
 
+                const selector = `.${rule}`;
+
                 if (
                   !cssCache.some(
                     (css) =>
-                      css.selector === rule &&
+                      css.selector === selector &&
                       css.responsiveVariant === responsiveVariant,
                   )
                 ) {
-                  // handled in `appendAdditionalCss`
-                  cssCache.push({ selector: rule, responsiveVariant });
+                  // handled in `createRuntimeFn`
+                  cssCache.push({ selector, responsiveVariant });
                 }
               } else {
                 // styleRules.push(rule);
@@ -192,7 +195,7 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       ...conditionClassNames,
     };
 
-    const config: PatternResult<Variants, ConditionNames> = {
+    const config: PatternResult<Variants, ConditionNames, Conditions> = {
       defaultClassName,
       variantClassNames,
       defaultVariants,
@@ -200,32 +203,18 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
       responsiveVariantClassNames,
       // @ts-expect-error TODO
       conditionNames: responsiveVariants,
-    };
-
-    return addFunctionSerializer(homemadeRecipeRuntime(config), {
-      importPath: "homemade-recipes/homemadeRecipeRuntime",
-      importName: "homemadeRecipeRuntime",
-      // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
-      args: [config],
-    });
-  }
-
-  const identifier = generateIdentifier();
-
-  function injectAdditionalCss() {
-    const config = {
       conditions,
       identifier,
       cssCache,
     };
 
-    return addFunctionSerializer(injectAdditionalCssRuntime(config), {
-      importPath: "homemade-recipes/injectAdditionalCssRuntime",
-      importName: "injectAdditionalCssRuntime",
+    return addFunctionSerializer(createRuntimeFn(config), {
+      importPath: "homemade-recipes/createRuntimeFn",
+      importName: "createRuntimeFn",
       // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/index.ts#L68
       args: [config],
     });
   }
 
-  return { homemadeRecipe, injectAdditionalCss };
+  return homemadeRecipe;
 };

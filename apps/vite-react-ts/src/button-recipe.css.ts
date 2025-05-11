@@ -15,6 +15,9 @@ export const buttonRecipe = homemadeRecipe({
         width: "unset",
       },
     },
+    variant: {
+      bright: "bright",
+    },
   },
 
   responsiveVariants: ["sm"],

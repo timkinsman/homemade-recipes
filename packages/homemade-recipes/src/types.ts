@@ -48,9 +48,19 @@ export type ResponsiveVariantClassNames<
   [C in Conditions[number]]: VariantsClassNames<Variants>;
 };
 
+export type BaseConditions = { [conditionName: string]: string };
+
+export type ConditionalOptions<Conditions extends BaseConditions> = Conditions;
+
+export type CssCache<Conditions extends BaseConditions> = {
+  selector: string;
+  responsiveVariant: keyof Conditions;
+}[];
+
 export type PatternResult<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
+  C extends BaseConditions,
 > = {
   defaultClassName: string;
   variantClassNames: VariantsClassNames<Variants>;
@@ -61,14 +71,15 @@ export type PatternResult<
     Conditions
   >;
   conditionNames: Conditions;
+  conditions: ConditionalOptions<C>;
+  identifier: string;
+  cssCache: CssCache<C>;
 };
 
 export interface CompoundVariant<Variants extends VariantGroups> {
   variants: VariantSelection<Variants>;
   style: RecipeStyleRule;
 }
-
-export type BaseConditions = { [conditionName: string]: string };
 
 export type PatternOptions<
   Variants extends VariantGroups,
@@ -104,10 +115,3 @@ export type RuntimeFn<
 export type RecipeVariants<
   RecipeFn extends RuntimeFn<VariantGroups, ConditionNames>,
 > = Resolve<Parameters<RecipeFn>[0]>;
-
-export type ConditionalOptions<Conditions extends BaseConditions> = Conditions;
-
-export type CssCache<Conditions extends BaseConditions> = {
-  selector: string;
-  responsiveVariant: keyof Conditions;
-}[];
