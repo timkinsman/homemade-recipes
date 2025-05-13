@@ -1,0 +1,54 @@
+{
+  "name": "ui",
+  "private": true,
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run compile",
+    "clean": "rimraf ./dist",
+    "compile": "tsup"
+  },
+  "peerDependencies": {
+    "react": "~19.0.0"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@vanilla-extract/css": "^1.16.1",
+    "@vanilla-extract/esbuild-plugin": "^2.3.12",
+    "@vanilla-extract/sprinkles": "^1.6.3",
+    "homemade-recipes": "workspace:*",
+    "tsup": "^8.3.5"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.10.1",
+    "@types/react": "19.0.2",
+    "react": "~19.0.0",
+    "react-dom": "~19.0.0",
+    "rimraf": "~5.0.0",
+    "typescript": "~5.8.3"
+  },
+  "exports": {
+    "./button": {
+      "types": "./dist/components/button.d.ts",
+      "default": "./dist/components/button.js"
+    },
+    "./flex": {
+      "types": "./dist/components/flex.d.ts",
+      "default": "./dist/components/flex.js"
+    },
+    "./grid": {
+      "types": "./dist/components/grid.d.ts",
+      "default": "./dist/components/grid.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "default": "./dist/theme/index.js"
+    },
+    "./theme/index.css": {
+      "default": "./dist/theme/index.css"
+    }
+  }
+}

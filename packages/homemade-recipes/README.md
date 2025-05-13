@@ -186,6 +186,11 @@ button-recipe__1d33wle0 button-recipe_fullWidth_true__1d33wle1 button-recipe_ful
 
 [Check out the example.](/apps/vite-react-ts/)
 
+## More examples
+
+- [Stand-alone UI package.](/packages/ui)
+- [Nextjs (app router) consuming UI package.](/apps/nextjs/)
+
 ## Contributing
 
 Contributions are welcome! Here's how you can help:
