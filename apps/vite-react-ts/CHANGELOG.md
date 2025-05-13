@@ -1,5 +1,12 @@
 # vite-react-ts
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [dec8066]
+  - homemade-recipes@0.3.1
+
 ## 0.0.2
 
 ### Patch Changes
