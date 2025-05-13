@@ -18,7 +18,6 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@vanilla-extract/css": "^1.16.1",
     "@vanilla-extract/esbuild-plugin": "^2.3.12",
-    "@vanilla-extract/sprinkles": "^1.6.3",
     "homemade-recipes": "workspace:*",
     "tsup": "^8.3.5"
   },

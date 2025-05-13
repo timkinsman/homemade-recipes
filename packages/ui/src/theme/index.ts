@@ -2,6 +2,4 @@
 
 export * from "./recipes";
 
-export * from "./sprinkles";
-
 export * from "./theme.css";
