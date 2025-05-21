@@ -11,6 +11,7 @@
     "build": "pnpm --filter \"./packages/**\" run -r build",
     "test": "jest",
     "lint": "eslint --ext js,ts,tsx .",
+    "lint:fix": "eslint --ext js,ts,tsx . --fix",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "changeset": "changeset",
