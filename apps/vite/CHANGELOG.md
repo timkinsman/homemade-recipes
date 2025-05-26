@@ -1,5 +1,11 @@
 # vite
 
+## 0.0.4
+
+### Patch Changes
+
+- 0efe42f: chore: update vite and next examples to be more simple
+
 ## 0.0.3
 
 ### Patch Changes
