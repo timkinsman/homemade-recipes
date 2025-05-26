@@ -1,7 +1,7 @@
+import "@homemade-recipes/ui/theme/index.css";
 import type { Metadata } from "next";
 /* eslint-disable camelcase */
 import { Geist, Geist_Mono } from "next/font/google";
-import "ui/theme/index.css";
 import "./globals.css";
 
 const geistSans = Geist({

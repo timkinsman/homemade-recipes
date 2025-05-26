@@ -1,5 +1,5 @@
 {
-  "name": "next",
+  "name": "@homemade-recipes/next",
   "version": "0.1.3",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
     "@vanilla-extract/next-plugin": "^2.4.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "0.1.3",
-    "ui": "workspace:*"
+    "next": "15.3.2",
+    "@homemade-recipes/ui": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",

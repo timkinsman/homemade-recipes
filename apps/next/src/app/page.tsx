@@ -1,5 +1,5 @@
-import { Button } from "ui/button";
-import { Grid } from "ui/grid";
+import { Button } from "@homemade-recipes/ui/button";
+import { Grid } from "@homemade-recipes/ui/grid";
 
 export default function Home() {
   return (

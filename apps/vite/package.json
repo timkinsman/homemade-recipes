@@ -1,5 +1,5 @@
 {
-  "name": "vite",
+  "name": "@homemade-recipes/vite",
   "private": true,
   "version": "0.0.4",
   "type": "module",
@@ -27,6 +27,6 @@
     "globals": "^16.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
-    "vite": "^0.0.4"
+    "vite": "^6.3.1"
   }
 }
