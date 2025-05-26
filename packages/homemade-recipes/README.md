@@ -115,7 +115,7 @@ export type ButtonVariants = NonNullable<
 </style>
 ```
 
-> By passing in an existing class (i.e. [bright](/apps/vite/src/index.css#L70)), `bright_sm` can now be created.
+> By passing in an existing class (i.e. [bright](/apps/vite/src/index.css#L45)), `bright_sm` can now be created.
 
 With this homemade recipe, you can now use it for your button component.
 
