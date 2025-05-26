@@ -1,5 +1,13 @@
 # next
 
+## 0.1.3
+
+### Patch Changes
+
+- 0efe42f: chore: update vite and next examples to be more simple
+- Updated dependencies [0efe42f]
+  - next@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes
