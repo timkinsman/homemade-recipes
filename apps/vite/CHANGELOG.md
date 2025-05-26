@@ -1,4 +1,4 @@
-# vite-react-ts
+# vite
 
 ## 0.0.3
 

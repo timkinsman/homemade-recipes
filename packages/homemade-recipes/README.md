@@ -6,7 +6,7 @@ An extension of `@vanilla-extract/recipes` that adds responsive variants.
 [![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
 [![license: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Homemade Recipes is built for projects that need responsive styling with recipes while keeping Vanilla Extract's type safety and zero-runtime approach.
+Homemade Recipes is built for projects that need responsive styling with recipes while keeping Vanilla Extract's type safety approach.
 
 ## Disclaimer :warning:
 
@@ -184,12 +184,12 @@ button-recipe__1d33wle0 button-recipe_fullWidth_true__1d33wle1 button-recipe_ful
 }
 ```
 
-[Check out the example.](/apps/vite-react-ts/)
+[Check out the example.](/apps/vite/)
 
 ## More examples
 
 - [Stand-alone UI package.](/packages/ui)
-- [Nextjs (app router) consuming UI package.](/apps/nextjs/)
+- [Next.js 15 (app router) consuming UI package.](/apps/next/)
 
 ## Contributing
 
