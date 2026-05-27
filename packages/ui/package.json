@@ -11,22 +11,22 @@
     "compile": "tsup"
   },
   "peerDependencies": {
-    "react": "~19.0.0"
+    "react": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/colors": "^3.0.0",
-    "@radix-ui/react-slot": "^1.1.1",
-    "@vanilla-extract/css": "^1.16.1",
-    "@vanilla-extract/esbuild-plugin": "^2.3.12",
+    "@radix-ui/colors": "catalog:",
+    "@radix-ui/react-slot": "catalog:",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/esbuild-plugin": "catalog:",
     "homemade-recipes": "workspace:*",
-    "tsup": "^8.3.5"
+    "tsup": "catalog:"
   },
   "devDependencies": {
-    "@swc/core": "^1.10.1",
-    "@types/react": "19.0.2",
-    "react": "~19.0.0",
-    "react-dom": "~19.0.0",
-    "typescript": "~5.8.3"
+    "@swc/core": "catalog:",
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:"
   },
   "exports": {
     "./button": {

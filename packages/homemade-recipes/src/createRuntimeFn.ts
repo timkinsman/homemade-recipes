@@ -115,6 +115,7 @@ export const createRuntimeFn = <
   runtimeFn.variants = () => Object.keys(config.variantClassNames);
 
   runtimeFn.classNames = {
+    // @ts-expect-error FIXME - carry over from updated tsconfig
     get base() {
       return config.defaultClassName.split(" ")[0];
     },

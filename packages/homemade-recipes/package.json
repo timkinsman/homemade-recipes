@@ -17,14 +17,14 @@
     "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
-    "@vanilla-extract/css": "^1"
+    "@vanilla-extract/css": "^1.16.1"
   },
   "devDependencies": {
-    "@types/react": "19.0.2",
-    "@vanilla-extract/css": "1.16.1",
-    "@vanilla-extract/esbuild-plugin": "^2.3.12",
-    "tsup": "^8.3.5",
-    "typescript": "~5.8.3"
+    "@types/react": "catalog:",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/esbuild-plugin": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
