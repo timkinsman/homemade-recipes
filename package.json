@@ -20,9 +20,6 @@
     "codemod:catalog": "pnpx codemod pnpm/catalog"
   },
   "devDependencies": {
-    "@babel/core": "catalog:",
-    "@babel/preset-env": "catalog:",
-    "@babel/preset-typescript": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
@@ -32,18 +29,14 @@
     "@nayhoo/eslint-config": "catalog:",
     "@nayhoo/prettier-config": "catalog:",
     "@nayhoo/tsconfig": "catalog:",
-    "@testing-library/jest-dom": "catalog:",
-    "@types/jest": "catalog:",
-    "@vanilla-extract/jest-transform": "catalog:",
+    "@vanilla-extract/vite-plugin": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",
-    "jest": "catalog:",
-    "jest-environment-jsdom": "catalog:",
     "lint-staged": "catalog:",
     "prettier": "catalog:",
-    "ts-jest": "catalog:",
-    "ts-node": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [

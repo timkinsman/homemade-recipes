@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint --ext js,ts,tsx .",
     "build": "pnpm run clean && pnpm run compile",
-    "test": "jest",
+    "test": "vitest --coverage",
     "clean": "rm -rf dist",
     "compile": "tsup",
     "compile:watch": "tsup --watch",
