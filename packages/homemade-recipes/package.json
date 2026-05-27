@@ -8,8 +8,9 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest",
+    "lint": "eslint --ext js,ts,tsx .",
     "build": "pnpm run clean && pnpm run compile",
+    "test": "jest",
     "clean": "rm -rf dist",
     "compile": "tsup",
     "compile:watch": "tsup --watch",

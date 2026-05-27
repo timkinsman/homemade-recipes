@@ -1,36 +1,36 @@
 name: tests
 
 on:
-  push:
   pull_request:
-    branches: [$default-branch]
+    branches: main
 
 jobs:
   tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout code repository
+        uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: 10
+          cache: true
 
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - name: Setup node.js 26
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
-          cache: "pnpm"
+          node-version: 26
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm --filter "[origin/main]" lint
 
       - name: Build
-        run: pnpm run build
+        run: pnpm --filter "[origin/main]" build
 
       - name: Test
-        run: pnpm run test
+        run: pnpm --filter "[origin/main]" test
