@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run compile",
-    "clean": "rimraf ./dist",
+    "clean": "rm -rf dist",
     "compile": "tsup"
   },
   "peerDependencies": {
@@ -26,7 +26,6 @@
     "@types/react": "19.0.2",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
-    "rimraf": "~5.0.0",
     "typescript": "~5.8.3"
   },
   "exports": {
