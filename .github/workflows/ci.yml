@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout code repository
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+          cache: true
+
+      - name: Setup node.js 26
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (full)
+        run: pnpm lint
+
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout code repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+          cache: true
+
+      - name: Setup node.js 26
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Ensure origin/main ref present
+        run: git fetch --no-tags --depth=1 origin main:refs/remotes/origin/main || true
+
+      - name: Build (affected)
+        run: pnpm --filter "...[origin/main]" build
+
+      - name: Test (affected)
+        run: pnpm --filter "...[origin/main]" test

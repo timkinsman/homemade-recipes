@@ -2,13 +2,11 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   release:
     name: Release
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code repository
@@ -27,6 +25,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Test (full)
+        run: pnpm -r test
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
