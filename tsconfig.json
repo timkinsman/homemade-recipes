@@ -1,4 +1,3 @@
 {
-  "extends": "@nayhoo/tsconfig/base.json",
-  "exclude": ["node_modules", "dist"]
+  "extends": "@nayhoo/tsconfig/base.json"
 }

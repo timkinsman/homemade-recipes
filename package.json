@@ -17,7 +17,8 @@
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "cleandep": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
-    "codemod:catalog": "pnpx codemod pnpm/catalog"
+    "codemod:catalog": "pnpx codemod pnpm/catalog",
+    "up:nayhoo": "pnpm -r up @nayhoo/* && pnpm codemod:catalog"
   },
   "devDependencies": {
     "@changesets/changelog-github": "catalog:",
