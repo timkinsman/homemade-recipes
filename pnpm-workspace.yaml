@@ -32,7 +32,7 @@ catalog:
   husky: ^9.1.7
   lint-staged: ^17.0.5
   next: 15.3.2
-  prettier: ^3.4.2
+  prettier: ^3.8.1
   react: ^19.0.0
   react-dom: ^19.0.0
   tsup: ^8.3.5
