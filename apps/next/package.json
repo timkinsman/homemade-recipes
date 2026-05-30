@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@homemade-recipes/ui": "workspace:*",
-    "@vanilla-extract/next-plugin": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
@@ -19,6 +18,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@vanilla-extract/next-plugin": "catalog:",
     "typescript": "catalog:"
   }
 }

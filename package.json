@@ -31,13 +31,17 @@
     "@nayhoo/prettier-config": "catalog:",
     "@nayhoo/tsconfig": "catalog:",
     "@types/node": "catalog:",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/esbuild-plugin": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",
     "husky": "catalog:",
     "lint-staged": "catalog:",
     "prettier": "catalog:",
+    "tsup": "catalog:",
     "typescript": "catalog:",
+    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "lint-staged": {

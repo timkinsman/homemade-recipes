@@ -16,17 +16,13 @@
   "dependencies": {
     "@radix-ui/colors": "catalog:",
     "@radix-ui/react-slot": "catalog:",
-    "@vanilla-extract/css": "catalog:",
-    "@vanilla-extract/esbuild-plugin": "catalog:",
-    "homemade-recipes": "workspace:*",
-    "tsup": "catalog:"
+    "homemade-recipes": "workspace:*"
   },
   "devDependencies": {
     "@swc/core": "catalog:",
     "@types/react": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "typescript": "catalog:"
+    "react-dom": "catalog:"
   },
   "exports": {
     "./button": {

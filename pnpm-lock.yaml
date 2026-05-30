@@ -149,9 +149,15 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.17.46
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.17.2
+      '@vanilla-extract/esbuild-plugin':
+        specifier: 'catalog:'
+        version: 2.3.15(esbuild@0.25.4)
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
-        version: 3.9.5(@types/node@20.17.46)(terser@5.48.0)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@20.17.46)(typescript@5.9.3))
+        version: 3.9.5(@types/node@20.17.46)(terser@5.48.0)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@20.17.46)(typescript@5.9.3))(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 4.1.7(vitest@4.1.7)
@@ -167,21 +173,24 @@ importers:
       prettier:
         specifier: 'catalog:'
         version: 3.5.3
+      tsup:
+        specifier: 'catalog:'
+        version: 8.4.0(@swc/core@1.11.24)(jiti@2.4.2)(postcss@8.5.3)(typescript@5.9.3)(yaml@2.9.0)
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+      vite:
+        specifier: 'catalog:'
+        version: 6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
-        version: 4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3)
+        version: 4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3)(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))
 
   apps/next:
     dependencies:
       '@homemade-recipes/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@vanilla-extract/next-plugin':
-        specifier: 'catalog:'
-        version: 2.4.11(next@15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3))
       next:
         specifier: 'catalog:'
         version: 15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -201,6 +210,9 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.1.3(@types/react@19.1.3)
+      '@vanilla-extract/next-plugin':
+        specifier: 'catalog:'
+        version: 2.4.11(next@15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3))
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -226,9 +238,6 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.1.3(@types/react@19.1.3)
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.17.2
       '@vanilla-extract/vite-plugin':
         specifier: 'catalog:'
         version: 3.9.5(@types/node@25.9.1)(terser@5.48.0)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@25.9.1)(typescript@5.9.3))(vite@6.3.5(@types/node@25.9.1)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))
@@ -258,19 +267,10 @@ importers:
         version: 6.3.5(@types/node@25.9.1)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)
 
   packages/homemade-recipes:
-    devDependencies:
+    dependencies:
       '@vanilla-extract/css':
-        specifier: 'catalog:'
+        specifier: ^1.16.1
         version: 1.17.2
-      '@vanilla-extract/esbuild-plugin':
-        specifier: 'catalog:'
-        version: 2.3.15(esbuild@0.25.4)
-      tsup:
-        specifier: 'catalog:'
-        version: 8.4.0(@swc/core@1.11.24)(jiti@2.4.2)(postcss@8.5.3)(typescript@5.9.3)(yaml@2.9.0)
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
 
   packages/ui:
     dependencies:
@@ -280,18 +280,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: 'catalog:'
         version: 1.2.2(@types/react@19.1.3)(react@19.0.0)
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.17.2
-      '@vanilla-extract/esbuild-plugin':
-        specifier: 'catalog:'
-        version: 2.3.15(esbuild@0.25.4)
       homemade-recipes:
         specifier: workspace:*
         version: link:../homemade-recipes
-      tsup:
-        specifier: 'catalog:'
-        version: 8.4.0(@swc/core@1.11.24)(jiti@2.4.2)(postcss@8.5.3)(typescript@5.9.3)(yaml@2.9.0)
     devDependencies:
       '@swc/core':
         specifier: 'catalog:'
@@ -305,9 +296,6 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.0.0(react@19.0.0)
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
 
 packages:
 
@@ -2660,14 +2648,6 @@ packages:
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==, tarball: https://registry.npmjs.org/fastq/-/fastq-1.19.1.tgz}
 
-  fdir@6.4.4:
-    resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==, tarball: https://registry.npmjs.org/fdir/-/fdir-6.4.4.tgz}
-    peerDependencies:
-      picomatch: ^3 || ^4
-    peerDependenciesMeta:
-      picomatch:
-        optional: true
-
   fdir@6.5.0:
     resolution: {integrity: sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==, tarball: https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz}
     engines: {node: '>=12.0.0'}
@@ -4028,10 +4008,6 @@ packages:
   tinyexec@1.2.2:
     resolution: {integrity: sha512-M/Q0B2cp4K7kynaT/vnED1j8TlLY+Pp7C6Wl2bl/7u/F0mUVwdyOpwomQb8JpYLitHUssAJRmLZdMCGsrx7i+g==, tarball: https://registry.npmjs.org/tinyexec/-/tinyexec-1.2.2.tgz}
     engines: {node: '>=18'}
-
-  tinyglobby@0.2.13:
-    resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==, tarball: https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.13.tgz}
-    engines: {node: '>=12.0.0'}
 
   tinyglobby@0.2.16:
     resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==, tarball: https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.16.tgz}
@@ -5867,9 +5843,9 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  '@vanilla-extract/next-plugin@2.4.11(next@15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3))':
+  '@vanilla-extract/next-plugin@2.4.11(next@15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3))':
     dependencies:
-      '@vanilla-extract/webpack-plugin': 2.3.19(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3))
+      '@vanilla-extract/webpack-plugin': 2.3.19(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3))
       next: 15.3.2(@babel/core@7.27.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - babel-plugin-macros
@@ -5878,12 +5854,13 @@ snapshots:
 
   '@vanilla-extract/private@1.0.7': {}
 
-  '@vanilla-extract/vite-plugin@3.9.5(@types/node@20.17.46)(terser@5.48.0)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@20.17.46)(typescript@5.9.3))':
+  '@vanilla-extract/vite-plugin@3.9.5(@types/node@20.17.46)(terser@5.48.0)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@20.17.46)(typescript@5.9.3))(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))':
     dependencies:
       '@vanilla-extract/integration': 6.5.0(@types/node@20.17.46)(terser@5.48.0)
       outdent: 0.8.0
       postcss: 8.5.3
       postcss-load-config: 4.0.2(postcss@8.5.3)(ts-node@10.9.1(@swc/core@1.11.24)(@types/node@20.17.46)(typescript@5.9.3))
+      vite: 6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -5917,13 +5894,13 @@ snapshots:
       - terser
       - ts-node
 
-  '@vanilla-extract/webpack-plugin@2.3.19(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3))':
+  '@vanilla-extract/webpack-plugin@2.3.19(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3))':
     dependencies:
       '@vanilla-extract/integration': 8.0.2
       debug: 4.4.0
       loader-utils: 2.0.4
       picocolors: 1.1.1
-      webpack: 5.99.8(@swc/core@1.11.24)(postcss@8.5.3)
+      webpack: 5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -5951,7 +5928,7 @@ snapshots:
       obug: 2.1.1
       std-env: 4.1.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3)
+      vitest: 4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3)(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))
 
   '@vitest/expect@4.1.7':
     dependencies:
@@ -5962,11 +5939,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.7':
+  '@vitest/mocker@4.1.7(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))':
     dependencies:
       '@vitest/spy': 4.1.7
       estree-walker: 3.0.3
       magic-string: 0.30.21
+    optionalDependencies:
+      vite: 6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.7':
     dependencies:
@@ -6526,7 +6505,6 @@ snapshots:
   debug@4.4.3:
     dependencies:
       ms: 2.1.3
-    optional: true
 
   decimal.js@10.6.0:
     optional: true
@@ -7091,10 +7069,6 @@ snapshots:
   fastq@1.19.1:
     dependencies:
       reusify: 1.1.0
-
-  fdir@6.4.4(picomatch@4.0.4):
-    optionalDependencies:
-      picomatch: 4.0.4
 
   fdir@6.5.0(picomatch@4.0.4):
     optionalDependencies:
@@ -8434,7 +8408,7 @@ snapshots:
 
   sucrase@3.35.0:
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.8
+      '@jridgewell/gen-mapping': 0.3.13
       commander: 4.1.1
       glob: 10.4.5
       lines-and-columns: 1.2.4
@@ -8464,15 +8438,16 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.6.1(@swc/core@1.11.24)(postcss@8.5.3)(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3)):
+  terser-webpack-plugin@5.6.1(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3)(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.99.8(@swc/core@1.11.24)(postcss@8.5.3)
+      webpack: 5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3)
     optionalDependencies:
       '@swc/core': 1.11.24
+      esbuild: 0.25.4
       postcss: 8.5.3
 
   terser@5.48.0:
@@ -8499,11 +8474,6 @@ snapshots:
   tinyexec@0.3.2: {}
 
   tinyexec@1.2.2: {}
-
-  tinyglobby@0.2.13:
-    dependencies:
-      fdir: 6.4.4(picomatch@4.0.4)
-      picomatch: 4.0.4
 
   tinyglobby@0.2.16:
     dependencies:
@@ -8608,7 +8578,7 @@ snapshots:
       cac: 6.7.14
       chokidar: 4.0.3
       consola: 3.4.2
-      debug: 4.4.0
+      debug: 4.4.3
       esbuild: 0.25.4
       joycon: 3.1.1
       picocolors: 1.1.1
@@ -8618,7 +8588,7 @@ snapshots:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tinyexec: 0.3.2
-      tinyglobby: 0.2.13
+      tinyglobby: 0.2.16
       tree-kill: 1.2.2
     optionalDependencies:
       '@swc/core': 1.11.24
@@ -8782,14 +8752,29 @@ snapshots:
       fsevents: 2.3.3
       terser: 5.48.0
 
-  vite@6.3.5(@types/node@25.9.1)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0):
+  vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0):
     dependencies:
       esbuild: 0.25.4
-      fdir: 6.4.4(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.3
       rollup: 4.40.2
-      tinyglobby: 0.2.13
+      tinyglobby: 0.2.16
+    optionalDependencies:
+      '@types/node': 20.17.46
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      terser: 5.48.0
+      yaml: 2.9.0
+
+  vite@6.3.5(@types/node@25.9.1)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0):
+    dependencies:
+      esbuild: 0.25.4
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
+      postcss: 8.5.3
+      rollup: 4.40.2
+      tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 25.9.1
       fsevents: 2.3.3
@@ -8797,10 +8782,10 @@ snapshots:
       terser: 5.48.0
       yaml: 2.9.0
 
-  vitest@4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3):
+  vitest@4.1.7(@types/node@20.17.46)(@vitest/coverage-v8@4.1.7)(jsdom@20.0.3)(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.7
-      '@vitest/mocker': 4.1.7
+      '@vitest/mocker': 4.1.7(vite@6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0))
       '@vitest/pretty-format': 4.1.7
       '@vitest/runner': 4.1.7
       '@vitest/snapshot': 4.1.7
@@ -8817,6 +8802,7 @@ snapshots:
       tinyexec: 1.2.2
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
+      vite: 6.3.5(@types/node@20.17.46)(jiti@2.4.2)(terser@5.48.0)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 20.17.46
@@ -8844,7 +8830,7 @@ snapshots:
 
   webpack-sources@3.5.0: {}
 
-  webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3):
+  webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.9
@@ -8867,7 +8853,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(@swc/core@1.11.24)(postcss@8.5.3)(webpack@5.99.8(@swc/core@1.11.24)(postcss@8.5.3))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3)(webpack@5.99.8(@swc/core@1.11.24)(esbuild@0.25.4)(postcss@8.5.3))
       watchpack: 2.5.1
       webpack-sources: 3.5.0
     transitivePeerDependencies:
