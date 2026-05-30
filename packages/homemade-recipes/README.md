@@ -2,7 +2,6 @@
 
 An extension of `@vanilla-extract/recipes` that adds responsive variants.
 
-[![Tests](https://github.com/timkinsman/homemade-recipes/actions/workflows/tests.yml/badge.svg)](https://github.com/timkinsman/homemade-recipes/actions)
 [![npm version](https://img.shields.io/npm/v/homemade-recipes.svg)](https://www.npmjs.com/package/homemade-recipes)
 [![license: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
