@@ -30,6 +30,7 @@
     "@nayhoo/eslint-config": "catalog:",
     "@nayhoo/prettier-config": "catalog:",
     "@nayhoo/tsconfig": "catalog:",
+    "@types/node": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",
