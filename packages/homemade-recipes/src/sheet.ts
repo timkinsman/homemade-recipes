@@ -39,9 +39,11 @@ function getStyleProperties(cssStyleRule: CSSStyleRule) {
 
   for (let i = 0; i < style.length; i++) {
     const propertyName = style[i];
-    styleString +=
-      // @ts-expect-error FIXME - carry over from updated tsconfig
-      propertyName + ":" + style.getPropertyValue(propertyName) + ";";
+
+    if (propertyName) {
+      styleString +=
+        propertyName + ":" + style.getPropertyValue(propertyName) + ";";
+    }
   }
 
   return styleString;
