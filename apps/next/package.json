@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@homemade-recipes/ui": "workspace:*",
-    "next": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "next": "15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vanilla-extract/next-plugin": "catalog:",
-    "typescript": "catalog:"
+    "@types/node": "20.17.46",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vanilla-extract/next-plugin": "^2.4.8",
+    "typescript": "^5.8.3"
   }
 }
