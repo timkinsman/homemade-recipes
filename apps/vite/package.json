@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "homemade-recipes": "workspace:*",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vanilla-extract/vite-plugin": "catalog:",
-    "@vitejs/plugin-react": "catalog:",
-    "eslint": "catalog:",
-    "eslint-plugin-react-hooks": "catalog:",
-    "eslint-plugin-react-refresh": "catalog:",
-    "globals": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:",
-    "vite": "catalog:"
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vanilla-extract/vite-plugin": "^3.9.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "~9.35.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.3.1"
   }
 }
