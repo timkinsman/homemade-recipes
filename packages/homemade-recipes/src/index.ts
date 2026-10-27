@@ -42,17 +42,17 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
 
   function homemadeRecipe<
     Variants extends VariantGroups,
-    ConditionNames extends Array<keyof Conditions>,
+    ConditionNames extends Array<keyof Conditions> = never[],
   >(
     options: PatternOptions<Variants, ConditionNames>,
     debugId?: string,
   ): RuntimeFn<Variants, ConditionNames> {
     const {
-      variants = {},
-      defaultVariants = {},
-      compoundVariants = [],
       base,
+      variants = {},
+      compoundVariants = [],
       responsiveVariants = [],
+      defaultVariants = {},
     } = options;
 
     let defaultClassName;
@@ -100,12 +100,17 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
     }
 
     // @ts-expect-error TODO
-    let conditionClassNames: Omit<
-      ResponsiveVariantClassNames<Variants, ConditionNames>,
-      "initial"
+    let conditionClassNames: ResponsiveVariantClassNames<
+      Variants,
+      ConditionNames
     > = {};
 
     if (responsiveVariants !== undefined) {
+      conditionClassNames = {
+        ...conditionClassNames,
+        initial: variantClassNames,
+      };
+
       responsiveVariants.forEach((responsiveVariant) => {
         if (responsiveVariant === "initial") {
           throw new Error("'initial' is not allowed as a responsiveVariant");
@@ -189,15 +194,16 @@ export const createHomemadeRecipe = <Conditions extends BaseConditions>(
     // @ts-expect-error TODO
     const responsiveVariantClassNames: PatternResult<
       Variants,
-      ConditionNames
+      ConditionNames,
+      Conditions
     >["responsiveVariantClassNames"] = {
-      initial: variantClassNames,
       ...conditionClassNames,
     };
 
     const config: PatternResult<Variants, ConditionNames, Conditions> = {
       defaultClassName,
       variantClassNames,
+      // @ts-expect-error TODO
       defaultVariants,
       compoundVariants: compounds,
       responsiveVariantClassNames,

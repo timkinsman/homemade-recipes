@@ -27,12 +27,12 @@ export type ResponsiveVariantSelection<
 > = {
   [VariantGroup in keyof Variants]?:
     | BooleanMap<keyof Variants[VariantGroup]>
-    | undefined
     | Partial<
         { initial: BooleanMap<keyof Variants[VariantGroup]> } & {
           [C in Conditions[number]]: BooleanMap<keyof Variants[VariantGroup]>;
         }
-      >;
+      >
+    | undefined;
 };
 
 export type VariantsClassNames<Variants extends VariantGroups> = {
@@ -64,12 +64,13 @@ export type PatternResult<
 > = {
   defaultClassName: string;
   variantClassNames: VariantsClassNames<Variants>;
-  defaultVariants: ResponsiveVariantSelection<Variants, Conditions>;
+  defaultVariants: Conditions extends never[]
+    ? VariantSelection<Variants>
+    : ResponsiveVariantSelection<Variants, Conditions>;
   compoundVariants: Array<[VariantSelection<Variants>, string]>;
-  responsiveVariantClassNames: ResponsiveVariantClassNames<
-    Variants,
-    Conditions
-  >;
+  responsiveVariantClassNames: Conditions extends never[]
+    ? Record<string, never>
+    : ResponsiveVariantClassNames<Variants, Conditions>;
   conditionNames: Conditions;
   conditions: ConditionalOptions<C>;
   identifier: string;
@@ -105,7 +106,11 @@ export type RuntimeFn<
   Variants extends VariantGroups,
   Conditions extends ConditionNames,
 > = ((
-  options?: Resolve<ResponsiveVariantSelection<Variants, Conditions>>,
+  options?: Resolve<
+    Conditions extends never[]
+      ? VariantSelection<Variants>
+      : ResponsiveVariantSelection<Variants, Conditions>
+  >,
 ) => string) & {
   variants: () => (keyof Variants)[];
   classNames: RecipeClassNames<Variants, Conditions>;

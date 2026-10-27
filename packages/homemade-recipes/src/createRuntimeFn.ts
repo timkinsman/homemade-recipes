@@ -53,11 +53,11 @@ export const createRuntimeFn = <
           // Conditional style (e.g. fullWidth={ initial: true })
 
           for (const conditionName in selection) {
+            // @ts-expect-error TODO
             let value = selection[conditionName];
 
             if (value != null) {
               if (typeof value === "boolean") {
-                // @ts-expect-error https://github.com/vanilla-extract-css/vanilla-extract/blob/f0db6bfab9d62b97a07a4a049a38573f96ae6d63/packages/recipes/src/createRuntimeFn.ts#L42
                 value = value === true ? "true" : "false";
               }
 
@@ -126,6 +126,7 @@ export const createRuntimeFn = <
       ) as RecipeClassNames<Variants, Conditions>["variants"];
     },
 
+    // @ts-expect-error TODO
     get responsiveVariants() {
       return config.responsiveVariantClassNames;
     },
