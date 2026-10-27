@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
-- a4bf57a: Types created for responsive variants correctly reflect the `responsiveVariants` option provided
+- a4bf57a: correct types for responsive variants if `responsiveVariants` option is not provided
